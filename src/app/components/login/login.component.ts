@@ -9,11 +9,13 @@ import {
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { NgToastModule } from 'ng-angular-popup';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule,NgToastModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
   providers: [AuthService],
@@ -24,7 +26,8 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private toast: NgToastService
   ) {}
 
   ngOnInit(): void {
@@ -41,12 +44,12 @@ export class LoginComponent {
       console.log(this.loginForm.value);
       this.auth.login(this.loginForm.value).subscribe({
         next: (res) => {
-          alert(res.message);
           this.loginForm.reset();
+          this.toast.success({detail:"SUCCESS",summary:res.message,duration:3000});
           this.router.navigate(['dashboard']);
         },
         error: (err) => {
-          alert(err?.error.message);
+          this.toast.error({detail:"ERROR",summary:"Something Went Wrong!",duration:3000});
         },
       });
     } else {
