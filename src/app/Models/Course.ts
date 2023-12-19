@@ -1,8 +1,9 @@
 export interface Course {
   courseId: number;
-  coursename: string;
-  coursecode: string;
+  courseName: string;
+  courseCode: string;
   credits: number;
   description: string;
   lecturer: string;
+  selected: boolean;
 }

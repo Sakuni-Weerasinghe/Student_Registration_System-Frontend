@@ -17,11 +17,12 @@ export class CourseRegistrationComponent {
 
   courseRegisterRequest: Course = {
     courseId: 0,
-    coursename: " ",
-    coursecode: " ",
+    courseName: " ",
+    courseCode: " ",
     credits: 0,
     description: " ",
-    lecturer: " "
+    lecturer: " ",
+    selected: false
   };
 
   constructor(

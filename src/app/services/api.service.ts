@@ -33,4 +33,8 @@ export class ApiService {
       courseRegisterRequest
     );
   }
+
+  getAllCourses(): Observable<Course[]>{
+    return this.http.get<Course[]>(this.baseUrl + 'Course')
+  }
 }

@@ -2,15 +2,26 @@ import { Component } from '@angular/core';
 import { Student } from '../../Models/Student';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../services/api.service';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Course } from '../../Models/Course';
+
 
 @Component({
   selector: 'app-student-course-details',
   standalone: true,
-  imports: [],
+  imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './student-course-details.component.html',
   styleUrl: './student-course-details.component.css'
 })
 export class StudentCourseDetailsComponent {
+  courses_ = new FormControl('');
+
+  selectedCourses: Course[] = [];
+  courses: Course[] = [];
+
+  courseList: Course[] = []
+  initialCourseList : Course[] = []
+  
   studentDetails: Student = {
     studentId: 0,
     firstName: " ",
@@ -26,7 +37,23 @@ export class StudentCourseDetailsComponent {
 
   constructor( 
     private route: ActivatedRoute,
-    private studentService: ApiService) {}
+    private apiService: ApiService) {}
+
+    saveCourses(){
+      console.log('Selected Courses:', this.selectedCourses);
+      this.courseList = this.selectedCourses;
+    }  
+  
+    onCheckboxChange(course: any): void {
+      if (course.selected) {
+        this.selectedCourses.push(course);
+      } else {
+        const index = this.selectedCourses.findIndex(selectedCourse => selectedCourse.courseCode === course.courseCode);
+        if (index !== -1) {
+          this.selectedCourses.splice(index, 1);
+        }
+      }
+    }  
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -36,7 +63,7 @@ export class StudentCourseDetailsComponent {
         const idString = params.get("id");
         if(idString){
           const id = +idString;
-          this.studentService.getStudent(id)
+          this.apiService.getStudent(id)
           .subscribe({
             next: (response) => {
               this.studentDetails = response;
@@ -44,6 +71,17 @@ export class StudentCourseDetailsComponent {
           })
         }
       }
-    })
+        });
+
+    this.apiService.getAllCourses()
+    .subscribe({
+      next: (courses) => {
+        //console.log(students);
+        this.courses = courses;
+      },
+      error: (response) => {
+        console.log(response);
+      }
+    });
   }
 }
