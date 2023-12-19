@@ -1,0 +1,60 @@
+<div class="outer pt-5 pb-5">
+    <div class="container">
+        <div class="row">
+            <div class="offset-md-2 col-lg-7 col-md-7 offset-lg-3 offset-md-3">
+                <div class="panel border rounded-3 shadow px-5 pb-4">
+                    <div class="panel-heading">
+                        <div class="form-title text-center p-4">
+                            <h5 class="text-center pb-3"><strong>Course Registration Form</strong></h5>
+                            <img class="" src="../../../assets/Course Registration.jpg" alt="" width="100px" height="100px">
+                        </div>
+                    </div>
+                    <div class="panel-body pb-3">
+                        <form #courseform = "ngForm" (ngSubmit)="addCourse()">
+                            <!-- Course Code -->
+                            <div class="mb-3">
+                                <label for="coursecode" class="form-label">Course Code</label>
+                                <input type="text" class="form-control" id="coursecode" name="coursecode" [(ngModel)]="courseRegisterRequest.coursecode">
+                            </div>
+                            <!-- Course Name -->
+                            <div class="mb-3">
+                                <label for="coursename" class="form-label">Course Name</label>
+                                <input type="text" class="form-control" id="coursename" name="coursename" [(ngModel)]="courseRegisterRequest.coursename">
+                            </div>
+                            <!-- Credits -->
+                            <div class="mb-3">
+                                <label for="credits" class="form-label">Credits</label>
+                                <input type="number" class="form-control" id="credits" name="credits" [(ngModel)]="courseRegisterRequest.credits">
+                            </div>
+                            <!-- Description -->
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Description</label>
+                                <textarea rows="3" class="form-control" id="credits" name="credits" [(ngModel)]="courseRegisterRequest.description"></textarea>
+                            </div>
+                            <!-- Lecturer -->
+                            <div class="mb-3">
+                                <label for="lecturer" class="form-label">Lecturer</label>
+                                <select class="form-control" id="lecturer" name="lecturer" [(ngModel)]="courseRegisterRequest.lecturer">
+                                    <option value="Dr. R.N Nawarathna">Dr. R.N Nawarathna</option>
+                                    <option value="Dr. O.H Dayarathna">Dr. O.H Dayarathna</option>
+                                    <option value="Prof. S.K Kodithuwakku">Prof. S.K Kodithuwakku</option>
+                                    <option value="Dr. R.S Perera">Dr. R.S Perera</option>
+                                    <option value="Prof. P.H Karunarathna">Prof. P.H Karunarathna</option>
+                                    <option value="Prof. A.J Weerasinghe">Prof. A.J Weerasinghe</option>
+                                    <option value="Dr. A.V.H Basnayake">Dr. A.V.H Basnayake</option>
+                                    <option value="Dr. E.O de Silva">Dr. E.O de Silva</option>
+                                    <option value="Prof. S.W.L Piris">Prof. S.W.L Piris</option>
+                                    <option value="Dr. S.H.W Kumara">Dr. S.H.W Kumara</option>
+                                </select>
+                            </div>
+
+
+                            <!-- Register Button -->
+                            <button type="submit" class="btn btn-dark w-100 rounded-3 mt-4" id="course-add-btn">Add Course</button>                                                                                  
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

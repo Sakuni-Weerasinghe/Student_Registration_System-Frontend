@@ -2,19 +2,21 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Student } from '../Models/Student';
 import { Observable } from 'rxjs';
+import { Course } from '../Models/Course';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
-  private baseUrl: string = 'https://localhost:7270/api/Student';
+  private baseUrl: string = 'https://localhost:7270/api/';
 
   constructor(private http: HttpClient) {}
 
   registerStudent(registerStudentRequest: Student): Observable<Student> {
-    return this.http.post<Student>(
-      this.baseUrl + '/register-student',
-      registerStudentRequest
-    );
+    return this.http.post<Student>(this.baseUrl + 'Student/register-student', registerStudentRequest);
+  }
+
+  addCourse(courseRegisterRequest : Course): Observable<Course>{
+    return this.http.post<Course>(this.baseUrl + 'Course/add-course', courseRegisterRequest);
   }
 }
