@@ -1,27 +1,26 @@
 .navbar .navbar-brand {
-    color: white;
-  }
-  
-  .navbar .navbar-brand {
-    font-size: 18px !important;
-  }
+  color: white;
+}
 
+.navbar .navbar-brand {
+  font-size: 18px !important;
+}
 .navbar {
-    background-color: #2f0572 !important;
+  background-color: #2f0572 !important;
 }
 
 .nav-item .nav-link {
-    color: rgb(168, 168, 168) !important;
-  }
+  color: rgb(168, 168, 168) !important;
+}
 
-  .nav-item .nav-link:hover {
-    color: rgb(255, 255, 255) !important;
-  }
-  
-  .nav-item .active {
-    color: rgb(255, 255, 255) !important;
-  }
-  
-  .navbar-toggler:focus {
-    box-shadow: none !important;
-  }  
+.nav-item .nav-link:hover {
+  color: rgb(255, 255, 255) !important;
+}
+
+.nav-item .active {
+  color: rgb(255, 255, 255) !important;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none !important;
+}

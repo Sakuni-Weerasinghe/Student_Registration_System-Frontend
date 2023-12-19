@@ -1,29 +1,29 @@
 <nav class="navbar bg-dark navbar-expand-lg sticky-top bg-body-tertiary px-2 py-3" data-bs-theme="dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" [routerLink]="isLogin ? '/dashboard' : '/'">
-        <img src="../../../../assets/" alt="" width="35" height="35"
-          class="d-inline-block align-text-center me-2" />
-        Student Registration
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ms-auto">
-          <li *ngIf="!isLogin" class="nav-item">
-            <a class="nav-link" aria-current="page" [routerLink]='["/"]'>Home</a>
-          </li>
-          <li *ngIf="isLogin" class="nav-item">
-            <a class="nav-link" aria-current="page" [routerLink]='["/dashboard"]'>Dashboard</a>
-          </li>
-          <li *ngIf="isLogin" class="nav-item" (click)="logOutHandler()">
-            <a class="nav-link ms-md-0 ms-lg-3" [routerLink]='["/"]'>Logout</a>
-          </li>
-          <li *ngIf="!isLogin" class="nav-item">
-            <a class=" nav-link ms-md-0 ms-lg-3" [routerLink]='["/login"]'>Login</a>
-          </li>
-        </ul>
-      </div>
+  <div class="container-fluid">
+    <a class="navbar-brand" [routerLink]="isLogin ? '/dashboard' : '/'">
+      <img src="../../../../assets/logo.svg" alt="" width="35" height="35"
+        class="d-inline-block align-text-center me-2" />
+      Student Registration
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ms-auto">
+        <li *ngIf="!isLogin" class="nav-item">
+          <a class="nav-link" aria-current="page" routerLink="/">Home</a>
+        </li>
+        <li *ngIf="isLogin" class="nav-item">
+          <a class="nav-link" aria-current="page" routerLink="/dashboard">Dashboard</a>
+        </li>
+        <li *ngIf="isLogin" class="nav-item" (click)="logOutHandler()">
+          <a class="nav-link ms-md-0 ms-lg-3" routerLink="/">Logout</a>
+        </li>
+        <li *ngIf="!isLogin" class="nav-item">
+          <a class=" nav-link ms-md-0 ms-lg-3" routerLink="/login">Login</a>
+        </li>
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>
