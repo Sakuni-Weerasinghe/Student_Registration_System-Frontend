@@ -1,6 +1,6 @@
 <nav class="navbar bg-dark navbar-expand-lg sticky-top bg-body-tertiary px-2 py-3" data-bs-theme="dark">
   <div class="container-fluid">
-    <a class="navbar-brand" [routerLink]="isLogin ? '/dashboard' : '/'">
+    <a class="navbar-brand" [routerLink]="isLogin ? 'dashboard' : ''">
       <img src="../../../../assets/logo.svg" alt="" width="35" height="35"
         class="d-inline-block align-text-center me-2" />
       Student Registration
@@ -11,25 +11,20 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav ms-auto">
-        <li *ngIf="!isLogin" class="nav-item">
-          <a class="nav-link" aria-current="page" routerLink="/">Home</a>
-        </li>
-        <li *ngIf="isLogin" class="nav-item">
-          <a class="nav-link" aria-current="page" routerLink="/dashboard">Dashboard</a>
-        </li>
-        <li *ngIf="isLogin" class="nav-item">
-          <a class="nav-link" aria-current="page" routerLink="/student">Students</a>
-        </li>
-        <li *ngIf="isLogin" class="nav-item">
-          <a class="nav-link" aria-current="page" routerLink="/course">Courses</a>
-        </li>
+        <ng-container *ngFor="let item of navItems">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" [routerLink]="item.path" routerLinkActive="active">
+              {{ item.label }}
+            </a>
+          </li>
+        </ng-container>
         <li *ngIf="isLogin" class="nav-item" (click)="logOutHandler()">
-          <a class="nav-link ms-md-0 ms-lg-3" routerLink="/">Logout</a>
+          <button class="nav-link ms-md-0 ms-lg-3">Logout</button>
         </li>
-        <li *ngIf="!isLogin" class="nav-item">
-          <a class=" nav-link ms-md-0 ms-lg-3" routerLink="/login">Login</a>
+        <li *ngIf="!isLogin" class="nav-item" (click)="logInHandler()">
+          <button class="nav-link ms-md-0 ms-lg-3">Login</button>
         </li>
       </ul>
     </div>
-  </div>
+  </div>
 </nav>

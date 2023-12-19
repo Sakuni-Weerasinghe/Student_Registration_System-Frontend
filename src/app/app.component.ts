@@ -1,11 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Component} from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { NgToastModule } from 'ng-angular-popup';
-
-import { AuthService } from './services/auth.service';
-import { filter } from 'rxjs/operators';
 import { HeaderComponent } from './core/header/header.component';
 import { FooterComponent } from './core/footer/footer.component';
 
@@ -15,23 +10,12 @@ import { FooterComponent } from './core/footer/footer.component';
   standalone: true,
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
-  imports: [CommonModule, RouterOutlet, HttpClientModule, NgToastModule, HeaderComponent, FooterComponent],
-  providers: [HttpClient, AuthService]
+  imports: [RouterOutlet, NgToastModule, HeaderComponent, FooterComponent],
+  providers: []
 })
-export class AppComponent implements OnInit {
-  isLogin: boolean = false;
-  activePathName: string = "";
+export class AppComponent {
 
-  constructor(private router: Router) { }
 
-  ngOnInit(): void {
-    // Subscribe to NavigationEnd events
-    this.router.events.pipe(
-      filter((event): event is NavigationEnd => event instanceof NavigationEnd)
-    ).subscribe((event: NavigationEnd) => {
-      // Get the current navigation URL
-      const currentUrl = event.url;
-      this.activePathName = currentUrl;
-    });
-  }
+
+
 }

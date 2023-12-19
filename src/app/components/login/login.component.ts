@@ -14,6 +14,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { StateService } from '../../services/state.service';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { ApiService } from '../../services/api.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -21,32 +22,33 @@ import { ApiService } from '../../services/api.service';
   imports: [CommonModule, ReactiveFormsModule, NgToastModule, HttpClientModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
-  providers: [ApiService, StateService, LocalStorageService, HttpClient],
+  providers: [],
 })
 
 export class LoginComponent implements OnInit {
-  loginForm!: FormGroup;
+  loginForm: FormGroup;
 
   constructor(
     private fb: FormBuilder,
-    private auth: ApiService,
+    private authService: AuthService,
+    private apiService: ApiService,
     private router: Router,
     private toast: NgToastService,
     private stateService: StateService,
-    private localStorageService: LocalStorageService
-  ) { }
-
-  ngOnInit(): void {
+    private localStorageService: LocalStorageService,
+  ) {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
     });
   }
 
+  ngOnInit(): void { }
+
   onLogin() {
     if (this.loginForm.valid) {
       console.log(this.loginForm.value);
-      this.auth.login(this.loginForm.value).subscribe({
+      this.apiService.login(this.loginForm.value).subscribe({
         next: (res) => {
           this.loginForm.reset();
           this.localStorageService.setItem("token", res.token)
@@ -55,7 +57,7 @@ export class LoginComponent implements OnInit {
             summary: res.message,
             duration: 3000,
           });
-          this.stateService.setLoginStatus(true);
+          this.authService.login();
           this.router.navigate(['dashboard']);
         },
         error: (err) => {
