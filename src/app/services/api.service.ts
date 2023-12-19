@@ -23,8 +23,8 @@ export class ApiService {
     return this.http.get<Student[]>(this.baseUrl + 'Student');
   }
 
-  getStudent(id: number): Observable<Student>{
-    return this.http.get<Student>(this.baseUrl + 'Student/' + id)
+  getStudent(id: number): Observable<Student> {
+    return this.http.get<Student>(this.baseUrl + 'Student/' + id);
   }
 
   addCourse(courseRegisterRequest: Course): Observable<Course> {
@@ -34,7 +34,7 @@ export class ApiService {
     );
   }
 
-  getAllCourses(): Observable<Course[]>{
-    return this.http.get<Course[]>(this.baseUrl + 'Course')
+  getAllCourses(): Observable<Course[]> {
+    return this.http.get<Course[]>(this.baseUrl + 'Course');
   }
 }
