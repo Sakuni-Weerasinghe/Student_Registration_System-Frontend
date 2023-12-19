@@ -1,0 +1,8 @@
+.navbar {
+    height: 60px;
+}
+
+#login-button{
+    background-color: #565a89;
+    outline: 1px solid transparent;
+}
