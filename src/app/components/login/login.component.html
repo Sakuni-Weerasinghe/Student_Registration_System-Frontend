@@ -1,0 +1,38 @@
+<div class="outer pt-5">
+    <div class="container">
+        <div class="row">
+            <div class="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-md-3">
+                <div class="panel border rounded-3 shadow px-5">
+                    <div class="panel-heading">
+                        <div class="form-title text-center">
+                            <img class="" src="../../../assets/user_icon.jpg" alt="" width="200px" height="200px">
+                        </div>
+                        <h6 class="text-center"><strong>Login to Your Account</strong></h6>
+                    </div>
+                    <div class="panel-body pb-5">
+                        <form [formGroup] = "loginForm">
+                            <!-- User Name -->
+                            <div class="form-group pt-3">
+                                <label for="username">User Name</label>
+                                <div class="input-field" [class.error] = "loginForm.controls['username'].dirty && loginForm.hasError('required','username')">
+                                    <input formControlName="username" type="text" id="username" class="rounded-3">
+                                </div>
+                                <small *ngIf="loginForm.controls['username'].dirty && loginForm.hasError('required','username')" class="text-danger">*Username is required</small>
+                            </div>
+                            <!-- Password -->
+                            <div class="form-group pt-3">
+                                <label for="password">Password</label>
+                                <div class="input-field" [class.error] = "loginForm.controls['password'].dirty && loginForm.hasError('required','password')">
+                                    <input formControlName="password" type="password" id="password" class="rounded-3">
+                                </div>
+                                <small *ngIf="loginForm.controls['password'].dirty && loginForm.hasError('required','password')" class="text-danger">*Password is required</small>
+                            </div>
+                            <!-- Login Button -->
+                            <button (click)="onSubmit()" type="submit" class="btn btn-dark w-100 rounded-3 mt-4" id="login-btn">Login</button>                                                                                  
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
