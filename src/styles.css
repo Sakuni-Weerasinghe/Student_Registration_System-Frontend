@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+html,
+body {
+    font-family: 'Muli', 'Roboto', sans-serif;
+}
+
+h1 {
+    font-weight: bolder;
+}
+
+@media screen and (max-width: 1000px) {
+    h1 {
+        font-size: calc(1rem + 1.5vw);
+    }
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
