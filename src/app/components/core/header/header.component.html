@@ -5,8 +5,8 @@
             ">
             Student Registration
         </a>
-        <button  type="button" class="btn btn-primary btn-rounded pr-4" id="login-button" [routerLink]='["/login"]'>
-            Login
+        <button  type="button" class="btn btn-primary btn-rounded pr-4" id="login-button" (click)="loginHandler()">
+            {{isLogin ? "Logout" : "Login"}}
         </button>
     </div>
 </nav>
