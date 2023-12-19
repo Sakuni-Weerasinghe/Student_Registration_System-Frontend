@@ -10,75 +10,51 @@
                         </div>
                     </div>
                     <div class="panel-body pb-3">
-                        <form [formGroup] = "studentRegistrationForm">
+                        <form #form = "ngForm" (ngSubmit)="registerStudent()">
                             <!-- First Name -->
-                            <div class="form-group pt-3">
-                                <label for="firstname">First Name</label>
-                                <div class="input-field" [class.error] = "studentRegistrationForm.controls['firstname'].dirty && studentRegistrationForm.hasError('required','firstname')">
-                                    <input formControlName="firstname" type="text" id="firstname" class="rounded-3">
-                                </div>
-                                <small *ngIf="studentRegistrationForm.controls['firstname'].dirty && studentRegistrationForm.hasError('required','firstname')" class="text-danger">*First Name is required</small>
+                            <div class="mb-3">
+                                <label for="firstname" class="form-label">First Name</label>
+                                <input type="text" class="form-control" id="firstname" name="firstname" [(ngModel)]="studentRegisterRequest.firstname">
                             </div>
-
                             <!-- Last Name -->
-                            <div class="form-group pt-3">
-                                <label for="lastname">Last Name</label>
-                                <div class="input-field" [class.error] = "studentRegistrationForm.controls['lastname'].dirty && studentRegistrationForm.hasError('required','lastname')">
-                                    <input formControlName="lastname" type="text" id="lastname" class="rounded-3">
-                                </div>
-                                <small *ngIf="studentRegistrationForm.controls['lastname'].dirty && studentRegistrationForm.hasError('required','lastname')" class="text-danger">*Last Name is required</small>
+                            <div class="mb-3">
+                                <label for="lastname" class="form-label">Last Name</label>
+                                <input type="text" class="form-control" id="firstname" name="firstname" [(ngModel)]="studentRegisterRequest.lastname">
                             </div>
-                            <!-- DOB -->
-                            <div class="form-group pt-3">
-                                <label for="birthday">Date of Birth</label>
-                                <div class="input-field" [class.error] = "studentRegistrationForm.controls['birthday'].dirty && studentRegistrationForm.hasError('required','birthday')">
-                                    <input formControlName="birthday" type="date" id="birthday" class="rounded-3">
-                                </div>
-                                <small *ngIf="studentRegistrationForm.controls['birthday'].dirty && studentRegistrationForm.hasError('required','birthday')" class="text-danger">*Birthday is required</small>
+                            <!-- Birthday -->
+                            <div class="mb-3">
+                                <label for="birthday" class="form-label">Birthday</label>
+                                <input type="date" class="form-control" id="birthday" name="birthday" [(ngModel)]="studentRegisterRequest.birthday">
                             </div>
                             <!-- Gender -->
-                            <div class="form-group pt-3">
-                                <label for="gender">Gender</label>
-                                <div class="input-field">
-                                    <select formControlName="birthday" id="gender" name="gender">
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                        <option value="other">Other</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <!-- Phone Number -->
-                            <div class="form-group pt-3">
-                                <label for="phone">Phone Number</label>
-                                <div class="input-field" [class.error] = "studentRegistrationForm.controls['phone'].dirty && studentRegistrationForm.hasError('required','phone')">
-                                    <input formControlName="phone" type="text" id="phone" class="rounded-3">
-                                </div>
-                                <small *ngIf="studentRegistrationForm.controls['phone'].dirty && studentRegistrationForm.hasError('required','phone')" class="text-danger">*Phone Number is required</small>
+                            <div class="mb-3">
+                                <label for="gender" class="form-label">Gender</label>
+                                <select class="form-control" id="gender" name="gender" [(ngModel)]="studentRegisterRequest.gender">
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                </select>
                             </div>
                             <!-- Email -->
-                            <div class="form-group pt-3">
-                                <label for="email">Email Address</label>
-                                <div class="input-field" [class.error] = "studentRegistrationForm.controls['email'].dirty && studentRegistrationForm.hasError('required','email')">
-                                    <input formControlName="email" type="email" id="email" class="rounded-3">
-                                </div>
-                                <small *ngIf="studentRegistrationForm.controls['email'].dirty && studentRegistrationForm.hasError('required','email')" class="text-danger">*Email Address is required</small>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" [(ngModel)]="studentRegisterRequest.email">
                             </div>
-                            <!-- Address Line 1 -->
-                            <div class="form-group pt-3">
-                                <label for="address">Address</label>
-                                <div class="input-field pb-2" [class.error] = "studentRegistrationForm.controls['address'].dirty && studentRegistrationForm.hasError('required','address')">
-                                    <input formControlName="addressline1" type="text" id="addressline1" class="rounded-3" placeholder="Address Line 1">
-                                </div>
-                                <div class="input-field pb-2" [class.error] = "studentRegistrationForm.controls['address'].dirty && studentRegistrationForm.hasError('required','address')">
-                                    <input formControlName="addressline2" type="text" id="addressline2" class="rounded-3" placeholder="Address Line 2">
-                                </div>
-                                <div class="input-field" [class.error] = "studentRegistrationForm.controls['address'].dirty && studentRegistrationForm.hasError('required','address')">
-                                    <input formControlName="addressline3" type="text" id="addressline3" class="rounded-3" placeholder="Address Line 3">
-                                </div>
-                                <small *ngIf="studentRegistrationForm.controls['address'].dirty && studentRegistrationForm.hasError('required','address')" class="text-danger">*Address is required</small>
+                            <!-- Phone Number -->
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="text" class="form-control" id="phone" name="phone" [(ngModel)]="studentRegisterRequest.phone">
                             </div>
-                            <!-- Login Button -->
-                            <button (click)="registerStudent()" type="submit" class="btn btn-dark w-100 rounded-3 mt-4" id="login-btn">Register Student</button>                                                                                  
+                            <!-- Address -->
+                            <div class="mb-3">
+                                <label for="address" class="form-label">Address</label>
+                                <input type="text" class="form-control mb-1" id="addressline1" name="addressline1" placeholder="Address Line 1" [(ngModel)]="studentRegisterRequest.addressline1">
+                                <input type="text" class="form-control mb-1" id="addressline2" name="addressline2" placeholder="Address Line 2" [(ngModel)]="studentRegisterRequest.addressline2">
+                                <input type="text" class="form-control" id="addressline3" name="addressline3" placeholder="Address Line 3" [(ngModel)]="studentRegisterRequest.addressline3">
+                            </div>
+
+                            <!-- Register Button -->
+                            <button type="submit" class="btn btn-dark w-100 rounded-3 mt-4" id="login-btn">Register Student</button>                                                                                  
                         </form>
                     </div>
                 </div>
