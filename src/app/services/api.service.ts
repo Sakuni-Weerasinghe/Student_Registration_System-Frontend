@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Student } from '../Models/Student';
 import { Observable } from 'rxjs';
 import { Course } from '../Models/Course';
+import { CourseSchedule } from '../Models/CourseSchedule';
 
 @Injectable({
   providedIn: 'root',
@@ -31,6 +32,13 @@ export class ApiService {
     return this.http.post<Course>(
       this.baseUrl + 'Course/add-course',
       courseRegisterRequest
+    );
+  }
+
+  addCourseSchedule(courseScheduleRequest: CourseSchedule) : Observable<CourseSchedule> {
+    return this.http.post<CourseSchedule>(
+      this.baseUrl + 'Course/add-course-schedule',
+      courseScheduleRequest
     );
   }
 
