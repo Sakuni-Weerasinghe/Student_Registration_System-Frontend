@@ -11,7 +11,8 @@ import { Course } from '../../Models/Course';
   standalone: true,
   imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './student-course-details.component.html',
-  styleUrl: './student-course-details.component.css'
+  styleUrl: './student-course-details.component.css',
+  providers: [ApiService]
 })
 export class StudentCourseDetailsComponent {
   courses_ = new FormControl('');
