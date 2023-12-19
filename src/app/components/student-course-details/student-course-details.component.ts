@@ -1,15 +1,18 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Student } from '../../Models/Student';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Course } from '../../Models/Course';
+import { StudentCourses } from '../../Models/StudentCourse';
+import { NgToastService } from 'ng-angular-popup';
+import { NgToastModule } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-student-course-details',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, CommonModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule, NgToastModule],
   templateUrl: './student-course-details.component.html',
   styleUrl: './student-course-details.component.css',
   providers: [ApiService],
@@ -36,11 +39,31 @@ export class StudentCourseDetailsComponent {
     addressLine3: ' ',
   };
 
-  constructor(private route: ActivatedRoute, private apiService: ApiService) {}
+  studentCourseRequest: StudentCourses = {
+    studentCourseId: 0,
+    studentId: 0,
+    courseId: 0
+  };
+
+  constructor(
+    private route: ActivatedRoute,
+    private apiService: ApiService,
+    private toast: NgToastService,
+    private router: Router) { }
 
   saveCourses() {
-    console.log('Selected Courses:', this.selectedCourses);
-    this.courseList = this.selectedCourses;
+    this.apiService.addStudentCourses(this.studentCourseRequest)
+      .subscribe({
+        next: (response) => {
+          console.log(response);
+          this.toast.success({ detail: "SUCCESS", summary: "Added Courses", duration: 3000 });
+          //  this.router.navigate("[]")
+        },
+        error: (error) => {
+
+        }
+      })
+
   }
 
   onCheckboxChange(course: any): void {

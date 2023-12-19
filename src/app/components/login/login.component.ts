@@ -21,7 +21,7 @@ import { ApiService } from '../../services/api.service';
   imports: [CommonModule, ReactiveFormsModule, NgToastModule, HttpClientModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
-  providers: [ApiService, StateService, NgToastService, LocalStorageService, HttpClient],
+  providers: [ApiService, StateService, LocalStorageService, HttpClient],
 })
 
 export class LoginComponent implements OnInit {
