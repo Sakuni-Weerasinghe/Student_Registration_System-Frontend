@@ -1,0 +1,24 @@
+<div class="container my-5">
+    <h4 class="text-center pb-4"><strong>Course Details</strong></h4>
+    <table class="table" *ngIf= "courses && courses.length > 0">
+        <thead>
+            <th>Course Code</th>
+            <th>Course Name</th>
+            <th>Credits</th>
+            <th>Details</th>
+            <th>Lecturer</th>
+            <th></th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let course of courses">
+                <td>{{course.courseCode}}</td>
+                <td>{{course.courseName}}</td>
+                <td>{{course.credits}}</td>
+                <td>{{course.description}}</td>
+                <td>{{course.lecturer}}</td>
+                <td><button class="btn btn-sm btn-primary rounded-3 detail-btn">Course Schedule</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <p *ngIf="!courses || courses.length <= 0 " >No Student Found</p>
+</div>

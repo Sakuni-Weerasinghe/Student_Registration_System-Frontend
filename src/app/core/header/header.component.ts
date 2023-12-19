@@ -36,10 +36,10 @@ export class HeaderComponent implements OnInit {
   }
 
   /**
-   * This function use to handle logout button lick event
+   * This function use to handle logout button click event
    */
   logOutHandler() {
-    this.stateService.setLoginStatus(false);
+    this.stateService.setLoginStatus(false)
     // localStorage.clear();
   }
 }

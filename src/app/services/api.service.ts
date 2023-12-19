@@ -13,6 +13,10 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
+  login(loginObj: any) {
+    return this.http.post<any>( this.baseUrl + "Admin/authenticate", loginObj);
+  }
+
   registerStudent(registerStudentRequest: Student): Observable<Student> {
     return this.http.post<Student>(
       this.baseUrl + 'Student/register-student',

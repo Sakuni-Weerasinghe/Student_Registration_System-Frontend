@@ -8,6 +8,8 @@ import { CourseRegistrationComponent } from './components/course-registration/co
 import { StudentEnrollmentComponent } from './components/student-enrollment/student-enrollment.component';
 import { StudentCourseDetailsComponent } from './components/student-course-details/student-course-details.component';
 import { CourseScheduleComponent } from './components/course-schedule/course-schedule.component';
+import { StudentsListComponent } from './components/students-list/students-list.component';
+import { CourseListComponent } from './components/course-list/course-list.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -25,4 +27,7 @@ export const routes: Routes = [
     component: StudentCourseDetailsComponent,
   },
   { path: 'course-schedule', component: CourseScheduleComponent },
+  { path: 'student', component: StudentsListComponent },
+  { path: 'course', component: CourseListComponent }
+
 ];

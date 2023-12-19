@@ -7,13 +7,13 @@ import {
   Validators,
 } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { NgToastModule } from 'ng-angular-popup';
 import { NgToastService } from 'ng-angular-popup';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { StateService } from '../../services/state.service';
 import { LocalStorageService } from '../../services/local-storage.service';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +21,7 @@ import { LocalStorageService } from '../../services/local-storage.service';
   imports: [CommonModule, ReactiveFormsModule, NgToastModule, HttpClientModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
-  providers: [AuthService, HttpClient],
+  providers: [ApiService, StateService, NgToastService, LocalStorageService, HttpClient],
 })
 
 export class LoginComponent implements OnInit {
@@ -29,11 +29,11 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private auth: AuthService,
+    private auth: ApiService,
     private router: Router,
     private toast: NgToastService,
     private stateService: StateService,
-    private localStorageService : LocalStorageService
+    private localStorageService: LocalStorageService
   ) { }
 
   ngOnInit(): void {
@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
       this.auth.login(this.loginForm.value).subscribe({
         next: (res) => {
           this.loginForm.reset();
-          this.localStorageService.setItem("token",res.token)
+          this.localStorageService.setItem("token", res.token)
           this.toast.success({
             detail: 'SUCCESS',
             summary: res.message,

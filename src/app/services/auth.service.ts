@@ -10,10 +10,6 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  login(loginObj: any) {
-    return this.http.post<any>(`${this.baseUrl}authenticate`, loginObj);
-  }
-
   logout() {
     localStorage.clear();
     this.router.navigate(['/login']);
