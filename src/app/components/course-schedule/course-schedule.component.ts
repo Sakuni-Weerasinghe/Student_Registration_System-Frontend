@@ -49,17 +49,16 @@ export class CourseScheduleComponent {
   }
 
   addCourseSchedule() {
-    // this.coursescheduleService.addCourseSchedule(this.courseScheduleRequest)
-    // .subscribe({
-    //   next: (course) => {
-    //     this.coursescheduleform.resetForm();
-    //     this.toast.success({detail:"SUCCESS",summary:"Course Registered! ",duration:3000});
-    //   },
-    //   error: (response) => {
+    this.coursescheduleService.addCourseSchedule(this.courseScheduleRequest)
+    .subscribe({
+      next: (course) => {
+        this.coursescheduleform.resetForm();
+        this.toast.success({detail:"SUCCESS",summary:"Course Schedule Added! ",duration:3000});
+      },
+      error: (response) => {
 
-    //   }
-    // })
-    console.log(this.courseScheduleRequest)
+      }
+    })
   }
 
 }

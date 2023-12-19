@@ -11,7 +11,7 @@ import { CourseSchedule } from '../Models/CourseSchedule';
 export class ApiService {
   private baseUrl: string = 'https://localhost:7270/api/';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   registerStudent(registerStudentRequest: Student): Observable<Student> {
     return this.http.post<Student>(
@@ -35,9 +35,9 @@ export class ApiService {
     );
   }
 
-  addCourseSchedule(courseScheduleRequest: CourseSchedule) : Observable<CourseSchedule> {
+  addCourseSchedule(courseScheduleRequest: CourseSchedule): Observable<CourseSchedule> {
     return this.http.post<CourseSchedule>(
-      this.baseUrl + 'Course/add-course-schedule',
+      this.baseUrl + 'CourseSchedule/add-course-schedule',
       courseScheduleRequest
     );
   }
