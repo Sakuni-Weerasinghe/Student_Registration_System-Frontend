@@ -1,1 +1,19 @@
-<p>student-enrollment works!</p>
+<div class="container my-5">
+    <h4 class="text-center pb-4"><strong>Student Enrollment</strong></h4>
+    <img class="pb-5" src="../../../assets/Student Enrollment.jpg" alt="" height="180px">
+    <table class="table" *ngIf= "students && students.length > 0">
+        <thead>
+            <th>ID</th>
+            <th>Student Name</th>
+            <th></th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let student of students">
+                <td>{{student.studentId}}</td>
+                <td>{{student.firstName + " " + student.lastName}}</td>
+                <td><button class="btn btn-sm btn-primary w-50 rounded-3 " id="enroll-btn" [routerLink]="['/student-enrollment','enroll',student.studentId]">Enroll</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <p *ngIf="!students || students.length <= 0 " >No Student Found</p>
+</div>

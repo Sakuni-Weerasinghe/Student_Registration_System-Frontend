@@ -8,7 +8,7 @@ import { ApiService } from '../../services/api.service';
 @Component({
   selector: 'app-student-registration',
   standalone: true,
-  imports: [FormsModule, CommonModule,NgToastModule],
+  imports: [FormsModule, CommonModule, NgToastModule],
   templateUrl: './student-registration.component.html',
   styleUrl: './student-registration.component.css',
 })
@@ -18,33 +18,33 @@ export class StudentRegistrationComponent {
 
   studentRegisterRequest: Student = {
     studentId: 0,
-    firstname: ' ',
-    lastname: ' ',
+    firstName: ' ',
+    lastName: ' ',
     birthday: new Date(),
     gender: ' ',
     email: ' ',
-    phone: ' ',
-    addressline1: ' ',
-    addressline2: ' ',
-    addressline3: ' ',
+    phones: ' ',
+    addressLine1: ' ',
+    addressLine2: ' ',
+    addressLine3: ' ',
   };
 
   constructor(
     private studentService: ApiService,
-    private toast: NgToastService){
-
-  }
+    private toast: NgToastService
+  ) {}
 
   registerStudent() {
-    this.studentService.registerStudent(this.studentRegisterRequest)
-    .subscribe({
+    this.studentService.registerStudent(this.studentRegisterRequest).subscribe({
       next: (student) => {
         this.form.resetForm();
-        this.toast.success({detail:"SUCCESS",summary:"Student Registered! ",duration:3000});
+        this.toast.success({
+          detail: 'SUCCESS',
+          summary: 'Student Registered! ',
+          duration: 3000,
+        });
       },
-      error: (response) => {
-
-      }
-    })
+      error: (response) => {},
+    });
   }
 }
