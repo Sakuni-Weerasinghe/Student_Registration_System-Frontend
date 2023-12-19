@@ -39,20 +39,24 @@ export class StudentCourseDetailsComponent {
     addressLine3: ' ',
   };
 
-  studentCourseRequest: StudentCourses = {
-    studentCourseId: 0,
-    studentId: 0,
-    courseId: 0
-  };
-
   constructor(
     private route: ActivatedRoute,
     private apiService: ApiService,
     private toast: NgToastService,
     private router: Router) { }
 
+  getSelectedCourseList() {
+    const studentId = this.studentDetails.studentId;
+    const selectedList = this.courseList.filter(item => item.selected).map(item => {
+      return { "studentId": studentId, "courseId": item.courseId }
+    });
+
+    return selectedList;
+  }
+
   saveCourses() {
-    this.apiService.addStudentCourses(this.studentCourseRequest)
+    const request = this.getSelectedCourseList();
+    this.apiService.addStudentCourses(request)
       .subscribe({
         next: (response) => {
           console.log(response);
@@ -100,7 +104,7 @@ export class StudentCourseDetailsComponent {
       next: (response) => {
         //console.log(students);
         this.initialCourseList = response;
-        this.courseList = this.initialCourseList;
+        this.courseList = [...response];
       },
       error: (error) => {
         console.log(error);
