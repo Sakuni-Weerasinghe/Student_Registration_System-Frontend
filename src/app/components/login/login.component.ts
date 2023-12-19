@@ -13,6 +13,7 @@ import { NgToastModule } from 'ng-angular-popup';
 import { NgToastService } from 'ng-angular-popup';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { StateService } from '../../services/state.service';
+import { LocalStorageService } from '../../services/local-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -31,7 +32,8 @@ export class LoginComponent implements OnInit {
     private auth: AuthService,
     private router: Router,
     private toast: NgToastService,
-    private stateService: StateService
+    private stateService: StateService,
+    private localStorageService : LocalStorageService
   ) { }
 
   ngOnInit(): void {
@@ -47,7 +49,7 @@ export class LoginComponent implements OnInit {
       this.auth.login(this.loginForm.value).subscribe({
         next: (res) => {
           this.loginForm.reset();
-          this.auth.storeToken(res.token);
+          this.localStorageService.setItem("token",res.token)
           this.toast.success({
             detail: 'SUCCESS',
             summary: res.message,
