@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Student } from '../../Models/Student';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Course } from '../../Models/Course';
 
-
 @Component({
   selector: 'app-student-course-details',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule],
   templateUrl: './student-course-details.component.html',
   styleUrl: './student-course-details.component.css',
-  providers: [ApiService]
+  providers: [ApiService],
 })
 export class StudentCourseDetailsComponent {
   courses_ = new FormControl('');
@@ -20,69 +20,68 @@ export class StudentCourseDetailsComponent {
   selectedCourses: Course[] = [];
   courses: Course[] = [];
 
-  courseList: Course[] = []
-  initialCourseList : Course[] = []
-  
+  courseList: Course[] = [];
+  initialCourseList: Course[] = [];
+
   studentDetails: Student = {
     studentId: 0,
-    firstName: " ",
-    lastName: " ",
+    firstName: ' ',
+    lastName: ' ',
     birthday: new Date(),
-    gender: " ",
-    email: " ",
-    phones: " ",
-    addressLine1: " ",
-    addressLine2: " ",
-    addressLine3: " "
+    gender: ' ',
+    email: ' ',
+    phones: ' ',
+    addressLine1: ' ',
+    addressLine2: ' ',
+    addressLine3: ' ',
   };
 
-  constructor( 
-    private route: ActivatedRoute,
-    private apiService: ApiService) {}
+  constructor(private route: ActivatedRoute, private apiService: ApiService) {}
 
-    saveCourses(){
-      console.log('Selected Courses:', this.selectedCourses);
-      this.courseList = this.selectedCourses;
-    }  
-  
-    onCheckboxChange(course: any): void {
-      if (course.selected) {
-        this.selectedCourses.push(course);
-      } else {
-        const index = this.selectedCourses.findIndex(selectedCourse => selectedCourse.courseCode === course.courseCode);
-        if (index !== -1) {
-          this.selectedCourses.splice(index, 1);
-        }
+  saveCourses() {
+    console.log('Selected Courses:', this.selectedCourses);
+    this.courseList = this.selectedCourses;
+  }
+
+  onCheckboxChange(course: any): void {
+    if (course.selected) {
+      this.selectedCourses.push(course);
+    } else {
+      const index = this.selectedCourses.findIndex(
+        (selectedCourse) => selectedCourse.courseCode === course.courseCode
+      );
+      if (index !== -1) {
+        this.selectedCourses.splice(index, 1);
       }
-    }  
+    }
+  }
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     this.route.paramMap.subscribe({
-      next:(params) => {
-        const idString = params.get("id");
-        if(idString){
+      next: (params) => {
+        const idString = params.get('id');
+        if (idString) {
           const id = +idString;
-          this.apiService.getStudent(id)
-          .subscribe({
+          this.apiService.getStudent(id).subscribe({
             next: (response) => {
               this.studentDetails = response;
-            }
-          })
+            },
+          });
         }
-      }
-        });
-
-    this.apiService.getAllCourses()
-    .subscribe({
-      next: (courses) => {
-        //console.log(students);
-        this.courses = courses;
       },
-      error: (response) => {
-        console.log(response);
-      }
+    });
+
+    this.apiService.getAllCourses().subscribe({
+      next: (response) => {
+        //console.log(students);
+        this.initialCourseList = response;
+        this.courseList = this.initialCourseList;
+      },
+      error: (error) => {
+        console.log(error);
+      },
     });
   }
 }
