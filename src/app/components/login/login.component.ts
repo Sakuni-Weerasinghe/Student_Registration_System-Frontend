@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,11 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent {
   loginForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private auth: AuthService) {}
+  constructor(
+    private fb: FormBuilder,
+    private auth: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -34,7 +39,16 @@ export class LoginComponent {
   onLogin() {
     if (this.loginForm.valid) {
       console.log(this.loginForm.value);
-      //send to database
+      this.auth.login(this.loginForm.value).subscribe({
+        next: (res) => {
+          alert(res.message);
+          this.loginForm.reset();
+          this.router.navigate(['dashboard']);
+        },
+        error: (err) => {
+          alert(err?.error.message);
+        },
+      });
     } else {
       //throw error
       this.validateAllFormFields(this.loginForm);
