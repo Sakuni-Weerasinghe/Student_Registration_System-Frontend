@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Student } from '../../Models/Student';
+import { ActivatedRoute } from '@angular/router';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-student-course-details',
@@ -23,7 +26,7 @@ export class StudentCourseDetailsComponent {
 
   constructor( 
     private route: ActivatedRoute,
-    private studentService: ApiServiceService) {}
+    private studentService: ApiService) {}
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
