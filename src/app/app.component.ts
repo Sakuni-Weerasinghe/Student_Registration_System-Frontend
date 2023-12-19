@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
-import { HttpClientModule,HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { NgToastModule } from 'ng-angular-popup';
-import { HeaderComponent } from './components/core/header/header.component';
-import { FooterComponent } from './components/core/footer/footer.component';
+import { HeaderComponent } from './core/header/header.component';
+import { FooterComponent } from './core/footer/footer.component';
 import { AuthService } from './services/auth.service';
 import { filter } from 'rxjs/operators';
 
@@ -21,7 +21,7 @@ import { filter } from 'rxjs/operators';
     HeaderComponent,
     FooterComponent,
   ],
-  providers: [HttpClient,AuthService]
+  providers: [HttpClient, AuthService]
 })
 export class AppComponent implements OnInit {
   title = 'Student_Registration_System-Frontend';
@@ -31,16 +31,16 @@ export class AppComponent implements OnInit {
 
 
   constructor(
-    private router: Router){}
+    private router: Router) { }
 
   ngOnInit(): void {
-        // Subscribe to NavigationEnd events
-        this.router.events.pipe(
-          filter((event): event is NavigationEnd => event instanceof NavigationEnd)
-      ).subscribe((event: NavigationEnd) => {
-          // Get the current navigation URL
-          const currentUrl = event.url;
-          this.activePathName = currentUrl;
-      });
+    // Subscribe to NavigationEnd events
+    this.router.events.pipe(
+      filter((event): event is NavigationEnd => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      // Get the current navigation URL
+      const currentUrl = event.url;
+      this.activePathName = currentUrl;
+    });
   }
 }

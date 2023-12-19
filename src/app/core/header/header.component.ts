@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { StateService } from '../../../services/state.service';
+import { StateService } from '../../services/state.service';
 import { CommonModule } from '@angular/common';
-import { LocalStorageService } from '../../../services/local-storage.service';
-import { LoginComponent } from '../../login/login.component';
+import { LocalStorageService } from '../../services/local-storage.service';
+import { LoginComponent } from '../../components/login/login.component';
 
 @Component({
   selector: 'app-header',
@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
     private localStorageService: LocalStorageService,
     private stateService: StateService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     // Check token availability in local storage
