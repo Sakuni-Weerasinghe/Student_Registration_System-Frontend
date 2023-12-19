@@ -28,7 +28,7 @@
                                 <small *ngIf="loginForm.controls['password'].dirty && loginForm.hasError('required','password')" class="text-danger">*Password is required</small>
                             </div>
                             <!-- Login Button -->
-                            <button (click)="onSubmit()" type="submit" class="btn btn-dark w-100 rounded-3 mt-4" id="login-btn">Login</button>                                                                                  
+                            <button (click)="onLogin()" type="submit" class="btn btn-dark w-100 rounded-3 mt-4" id="login-btn">Login</button>                                                                                  
                         </form>
                     </div>
                 </div>
