@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   FormBuilder,
@@ -20,9 +20,10 @@ import { StateService } from '../../services/state.service';
   imports: [CommonModule, ReactiveFormsModule, NgToastModule, HttpClientModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
-  providers: [AuthService, HttpClient,StateService],
+  providers: [AuthService, HttpClient],
 })
-export class LoginComponent {
+
+export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
 
   constructor(
@@ -31,10 +32,9 @@ export class LoginComponent {
     private router: Router,
     private toast: NgToastService,
     private stateService: StateService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
@@ -53,6 +53,7 @@ export class LoginComponent {
             summary: res.message,
             duration: 3000,
           });
+          this.stateService.setLoginStatus(true);
           this.router.navigate(['dashboard']);
         },
         error: (err) => {
@@ -63,6 +64,7 @@ export class LoginComponent {
           });
         },
       });
+      //send to database
     } else {
       //throw error
       this.validateAllFormFields(this.loginForm);
