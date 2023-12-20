@@ -98,7 +98,6 @@ export class StudentCourseDetailsComponent {
 
         }
       })
-
   }
 
   onCheckboxChange(course: any): void {
