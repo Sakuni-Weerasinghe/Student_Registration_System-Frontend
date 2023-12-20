@@ -12,6 +12,7 @@ import { StudentsListComponent } from './components/students-list/students-list.
 import { CourseListComponent } from './components/course-list/course-list.component';
 import { loginGuard } from './guards/login.guard';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { StudentDetailsComponent } from './components/student-details/student-details.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent , canActivate: [loginGuard] },
@@ -32,6 +33,7 @@ export const routes: Routes = [
   { path: 'course', component: CourseListComponent },
 
   { path: '', component: HomeComponent, pathMatch: "full", canActivate: [loginGuard] },
+  {path: 'student/details/:id', component:StudentDetailsComponent },
 
   { path: '**', component:PageNotFoundComponent }
 

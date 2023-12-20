@@ -1,0 +1,43 @@
+<div class="container my-5">
+    <h4 class="text-center pb-5"><strong>{{studentDetails.firstName + " " + studentDetails.lastName}}</strong></h4>
+    <div>
+        <h4 class="text-left pb-4"><strong>Personal Details</strong></h4>
+        <div class="pb-5">
+            <table class="table mx-5">
+                <tr>
+                    <th>Student Full Name</th>
+                    <td>{{studentDetails.firstName + " " + studentDetails.lastName}}</td>
+                </tr>
+                <tr>
+                    <th>BirthDay</th>
+                    <td>{{studentDetails.birthday}}</td>
+                </tr>
+                <tr>
+                    <th>Gender</th>
+                    <td>{{studentDetails.gender}}</td>
+                </tr>
+                <tr>
+                    <th>Phone Number</th>
+                    <td>{{studentDetails.phones}}</td>
+                </tr>
+                <tr>
+                    <th>Email Address</th>
+                    <td>{{studentDetails.email}}</td>
+                </tr>
+                <tr>
+                    <th>Address</th>
+                    <td>{{studentDetails.addressLine1 + ", " + studentDetails.addressLine2 + ", " + studentDetails.addressLine3}}</td>
+                </tr>
+                    
+            </table>            
+        </div>
+    </div>
+    <div>
+        <h4 class="text-left pb-5"><strong>Course Details</strong></h4>
+        <div>
+
+        </div>
+    </div>
+    <button type="submit" class="btn btn-dark w-45 rounded-3 mt-4 " id="login-btn">Edit</button>
+    <button type="submit" class="btn btn-danger w-45  rounded-3 mt-4 mx-5" id="login-btn">Delete</button>
+</div>
