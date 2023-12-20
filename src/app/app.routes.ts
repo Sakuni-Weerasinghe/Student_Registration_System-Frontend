@@ -17,14 +17,14 @@ import { StudentDetailsComponent } from './components/student-details/student-de
 export const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [loginGuard] },
   { path: 'dashboard', component: AdminDashboardComponent, canActivate: [authGuard] },
-  { path: 'student-registration', component: StudentRegistrationComponent },
-  { path: 'course-registration', component: CourseRegistrationComponent },
-  { path: 'student-enrollment', component: StudentEnrollmentComponent },
-  { path: 'student-enrollment/enroll/:id', component: StudentCourseDetailsComponent },
-  { path: 'course-schedule', component: CourseScheduleComponent },
-  { path: 'student', component: StudentsListComponent },
-  { path: 'course', component: CourseListComponent },
-  { path: 'student/details/:id', component: StudentDetailsComponent },
+  { path: 'student-registration', component: StudentRegistrationComponent, canActivate: [authGuard] },
+  { path: 'course-registration', component: CourseRegistrationComponent, canActivate: [authGuard] },
+  { path: 'student-enrollment', component: StudentEnrollmentComponent, canActivate: [authGuard] },
+  { path: 'student-enrollment/enroll/:id', component: StudentCourseDetailsComponent, canActivate: [authGuard] },
+  { path: 'course-schedule', component: CourseScheduleComponent, canActivate: [authGuard] },
+  { path: 'student', component: StudentsListComponent, canActivate: [authGuard] },
+  { path: 'course', component: CourseListComponent, canActivate: [authGuard] },
+  { path: 'student/details/:id', component: StudentDetailsComponent, canActivate: [authGuard] },
 
   { path: '', component: HomeComponent, pathMatch: "full", canActivate: [loginGuard] },
 
