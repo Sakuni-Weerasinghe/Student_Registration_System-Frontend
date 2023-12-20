@@ -60,8 +60,8 @@ export class StudentCourseDetailsComponent {
       .subscribe({
         next: (response) => {
           console.log(response);
-          this.toast.success({ detail: "SUCCESS", summary: "Added Courses", duration: 3000 });
-          //  this.router.navigate("[]")
+          this.toast.success({ detail: "SUCCESS", summary: "Added Courses", duration: 2000 });
+          this.router.navigate(['student-enrollment']);
         },
         error: (error) => {
 
