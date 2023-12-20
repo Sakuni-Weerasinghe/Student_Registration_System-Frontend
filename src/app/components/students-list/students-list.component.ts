@@ -3,6 +3,7 @@ import { ApiService } from '../../services/api.service';
 import { Student } from '../../Models/Student';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-students-list',
@@ -10,7 +11,7 @@ import { CommonModule } from '@angular/common';
   imports: [RouterModule, CommonModule],
   templateUrl: './students-list.component.html',
   styleUrl: './students-list.component.css',
-  providers: [ApiService]
+  providers: [ApiService, HttpClient]
 })
 export class StudentsListComponent {
   students: Student[] = [];

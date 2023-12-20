@@ -2,10 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { StateService } from '../../services/state.service';
 import { CommonModule } from '@angular/common';
-import { LocalStorageService } from '../../services/local-storage.service';
-import { LoginComponent } from '../../components/login/login.component';
 import { NavItem } from '../../Models/Navbar';
 import { AuthService } from '../../services/auth.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +12,7 @@ import { AuthService } from '../../services/auth.service';
   imports: [RouterModule, CommonModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
-  providers: [],
+  providers: [HttpClient],
 })
 export class HeaderComponent implements OnInit {
   isLogin: boolean = false;

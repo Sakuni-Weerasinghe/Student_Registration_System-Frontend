@@ -3,13 +3,15 @@ import { NgForm, FormsModule } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
 import { NgToastService } from 'ng-angular-popup';
 import { Course } from '../../Models/Course';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-course-registration',
   standalone: true,
   imports: [FormsModule],
   templateUrl: './course-registration.component.html',
-  styleUrl: './course-registration.component.css'
+  styleUrl: './course-registration.component.css',
+  providers: [HttpClient]
 })
 export class CourseRegistrationComponent {
   @ViewChild('courseform')

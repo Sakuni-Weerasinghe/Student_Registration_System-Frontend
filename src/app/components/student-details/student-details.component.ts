@@ -3,13 +3,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { NgToastService } from 'ng-angular-popup';
 import { Student } from '../../Models/Student';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-student-details',
   standalone: true,
   imports: [],
   templateUrl: './student-details.component.html',
-  styleUrl: './student-details.component.css'
+  styleUrl: './student-details.component.css',
+  providers: [HttpClient]
 })
 export class StudentDetailsComponent {
   studentDetails: Student = {

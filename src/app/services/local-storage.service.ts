@@ -19,4 +19,5 @@ export class LocalStorageService {
     }
     return null;
   }
+
 }

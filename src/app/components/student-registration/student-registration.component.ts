@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Student } from '../../Models/Student';
 import { NgToastModule, NgToastService } from 'ng-angular-popup';
 import { ApiService } from '../../services/api.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-student-registration',
@@ -11,6 +12,7 @@ import { ApiService } from '../../services/api.service';
   imports: [FormsModule, CommonModule, NgToastModule],
   templateUrl: './student-registration.component.html',
   styleUrl: './student-registration.component.css',
+  providers: [HttpClient]
 })
 export class StudentRegistrationComponent {
   @ViewChild('form')

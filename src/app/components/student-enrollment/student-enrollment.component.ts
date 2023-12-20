@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { Student } from '../../Models/Student';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-student-enrollment',
@@ -10,7 +11,7 @@ import { Student } from '../../Models/Student';
   imports: [CommonModule, RouterModule],
   templateUrl: './student-enrollment.component.html',
   styleUrl: './student-enrollment.component.css',
-  providers: [ApiService]
+  providers: [ApiService,HttpClient]
 })
 export class StudentEnrollmentComponent {
   students: Student[] = [];

@@ -5,13 +5,15 @@ import { Course } from '../../Models/Course';
 import { CourseSchedule } from '../../Models/CourseSchedule';
 import { ApiService } from '../../services/api.service';
 import { NgToastModule, NgToastService } from 'ng-angular-popup';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-course-schedule',
   standalone: true,
   imports: [FormsModule, CommonModule, NgToastModule],
   templateUrl: './course-schedule.component.html',
-  styleUrl: './course-schedule.component.css'
+  styleUrl: './course-schedule.component.css',
+  providers: [HttpClient]
 })
 export class CourseScheduleComponent {
   @ViewChild('coursescheduleform')

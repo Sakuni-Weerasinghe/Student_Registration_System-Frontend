@@ -3,6 +3,7 @@ import { Course } from '../../Models/Course';
 import { ApiService } from '../../services/api.service';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-course-list',
@@ -10,7 +11,7 @@ import { CommonModule } from '@angular/common';
   imports: [RouterModule, CommonModule],
   templateUrl: './course-list.component.html',
   styleUrl: './course-list.component.css',
-  providers: [ApiService]
+  providers: [ApiService,HttpClient]
 })
 export class CourseListComponent {
   courses: Course[] = [];

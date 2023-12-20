@@ -5,7 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgToastModule } from 'ng-angular-popup';
 import { NgToastService } from 'ng-angular-popup';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { ApiService } from '../../services/api.service';
 import { AuthService } from '../../services/auth.service';
@@ -16,7 +16,7 @@ import { AuthService } from '../../services/auth.service';
   imports: [CommonModule, ReactiveFormsModule, NgToastModule, HttpClientModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
-  providers: [],
+  providers: [HttpClient],
 })
 
 export class LoginComponent implements OnInit {
@@ -36,11 +36,12 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  
   ngOnInit(): void { }
+
 
   onLogin() {
     if (this.loginForm.valid) {
-      console.log(this.loginForm.value);
       this.apiService.login(this.loginForm.value).subscribe({
         next: (res) => {
           this.loginForm.reset();
@@ -67,6 +68,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
+
   private validateAllFormFields(formGroup: FormGroup) {
     Object.keys(formGroup.controls).forEach((field) => {
       const control = formGroup.get(field);
@@ -77,4 +79,6 @@ export class LoginComponent implements OnInit {
       }
     });
   }
+
+
 }

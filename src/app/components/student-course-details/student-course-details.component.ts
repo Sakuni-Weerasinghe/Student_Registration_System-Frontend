@@ -8,6 +8,7 @@ import { Course } from '../../Models/Course';
 import { StudentCourses } from '../../Models/StudentCourse';
 import { NgToastService } from 'ng-angular-popup';
 import { NgToastModule } from 'ng-angular-popup';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-student-course-details',
@@ -15,7 +16,7 @@ import { NgToastModule } from 'ng-angular-popup';
   imports: [FormsModule, ReactiveFormsModule, CommonModule, NgToastModule],
   templateUrl: './student-course-details.component.html',
   styleUrl: './student-course-details.component.css',
-  providers: [ApiService],
+  providers: [ApiService,HttpClient],
 })
 export class StudentCourseDetailsComponent {
   courses_ = new FormControl('');
