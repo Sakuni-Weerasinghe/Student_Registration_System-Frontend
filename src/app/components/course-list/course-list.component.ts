@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-course-list',
   standalone: true,
-  imports: [RouterModule,CommonModule ],
+  imports: [RouterModule, CommonModule],
   templateUrl: './course-list.component.html',
   styleUrl: './course-list.component.css',
   providers: [ApiService]
@@ -15,12 +15,12 @@ import { CommonModule } from '@angular/common';
 export class CourseListComponent {
   courses: Course[] = [];
 
-  constructor(private coursesService: ApiService) { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    this.coursesService.getAllCourses()
+    this.apiService.getAllCourses()
       .subscribe({
         next: (response) => {
           //console.log(students);

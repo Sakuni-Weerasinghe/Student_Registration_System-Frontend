@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NgForm ,FormsModule} from '@angular/forms';
+import { NgForm, FormsModule } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
 import { NgToastService } from 'ng-angular-popup';
 import { Course } from '../../Models/Course';
@@ -26,21 +26,21 @@ export class CourseRegistrationComponent {
   };
 
   constructor(
-    private courseService: ApiService,
-    private toast: NgToastService){
+    private apiService: ApiService,
+    private toast: NgToastService) {
 
   }
 
   addCourse() {
-    this.courseService.addCourse(this.courseRegisterRequest)
-    .subscribe({
-      next: (course) => {
-        this.courseform.resetForm();
-        this.toast.success({detail:"SUCCESS",summary:"Course Registered! ",duration:3000});
-      },
-      error: (response) => {
+    this.apiService.addCourse(this.courseRegisterRequest)
+      .subscribe({
+        next: (response) => {
+          this.courseform.resetForm();
+          this.toast.success({ detail: "SUCCESS", summary: "Course Registered! ", duration: 3000 });
+        },
+        error: (error) => {
 
-      }
-    })
+        }
+      })
   }
 }

@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NgToastModule } from 'ng-angular-popup';
 import { HeaderComponent } from './core/header/header.component';
@@ -14,6 +14,7 @@ import { FooterComponent } from './core/footer/footer.component';
   providers: []
 })
 export class AppComponent {
+  title: any;
 
 
 

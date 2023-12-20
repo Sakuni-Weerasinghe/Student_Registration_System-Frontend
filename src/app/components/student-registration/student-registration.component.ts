@@ -30,13 +30,13 @@ export class StudentRegistrationComponent {
   };
 
   constructor(
-    private studentService: ApiService,
+    private apiService: ApiService,
     private toast: NgToastService
-  ) {}
+  ) { }
 
   registerStudent() {
-    this.studentService.registerStudent(this.studentRegisterRequest).subscribe({
-      next: (student) => {
+    this.apiService.registerStudent(this.studentRegisterRequest).subscribe({
+      next: (response) => {
         this.form.resetForm();
         this.toast.success({
           detail: 'SUCCESS',
@@ -44,7 +44,7 @@ export class StudentRegistrationComponent {
           duration: 3000,
         });
       },
-      error: (response) => {},
+      error: (error) => { },
     });
   }
 }

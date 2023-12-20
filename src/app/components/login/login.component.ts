@@ -1,17 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  FormBuilder,
-  FormGroup,
-  FormControl,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder,FormGroup,FormControl,Validators} from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgToastModule } from 'ng-angular-popup';
 import { NgToastService } from 'ng-angular-popup';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { StateService } from '../../services/state.service';
+import { HttpClientModule } from '@angular/common/http';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { ApiService } from '../../services/api.service';
 import { AuthService } from '../../services/auth.service';
@@ -34,7 +28,6 @@ export class LoginComponent implements OnInit {
     private apiService: ApiService,
     private router: Router,
     private toast: NgToastService,
-    private stateService: StateService,
     private localStorageService: LocalStorageService,
   ) {
     this.loginForm = this.fb.group({
@@ -68,9 +61,7 @@ export class LoginComponent implements OnInit {
           });
         },
       });
-      //send to database
     } else {
-      //throw error
       this.validateAllFormFields(this.loginForm);
       alert('Your Form is invalid');
     }

@@ -15,26 +15,19 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { StudentDetailsComponent } from './components/student-details/student-details.component';
 
 export const routes: Routes = [
-  { path: 'login', component: LoginComponent , canActivate: [loginGuard] },
-  {
-    path: 'dashboard',
-    component: AdminDashboardComponent,
-    canActivate: [authGuard],
-  },
+  { path: 'login', component: LoginComponent, canActivate: [loginGuard] },
+  { path: 'dashboard', component: AdminDashboardComponent, canActivate: [authGuard] },
   { path: 'student-registration', component: StudentRegistrationComponent },
   { path: 'course-registration', component: CourseRegistrationComponent },
   { path: 'student-enrollment', component: StudentEnrollmentComponent },
-  {
-    path: 'student-enrollment/enroll/:id',
-    component: StudentCourseDetailsComponent,
-  },
+  { path: 'student-enrollment/enroll/:id', component: StudentCourseDetailsComponent },
   { path: 'course-schedule', component: CourseScheduleComponent },
   { path: 'student', component: StudentsListComponent },
   { path: 'course', component: CourseListComponent },
+  { path: 'student/details/:id', component: StudentDetailsComponent },
 
   { path: '', component: HomeComponent, pathMatch: "full", canActivate: [loginGuard] },
-  {path: 'student/details/:id', component:StudentDetailsComponent },
 
-  { path: '**', component:PageNotFoundComponent }
+  { path: '**', component: PageNotFoundComponent }
 
 ];

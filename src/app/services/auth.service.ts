@@ -42,5 +42,5 @@ export class AuthService {
     this.stateService.setLoginStatus(false);
     localStorage.clear();
     this.router.navigate(['']);
-  }
+  }
 }

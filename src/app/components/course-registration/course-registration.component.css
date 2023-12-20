@@ -1,18 +1,20 @@
-.panel-heading{
+.panel-heading {
     text-align: center;
     margin-bottom: 10px;
 }
 
-#course-add-btn{
+#course-add-btn {
     margin-top: 20px;
 }
 
-.panel{
+.panel {
     min-height: 100px;
     box-shadow: 50px #565a89;
 }
 
-input,select,textarea{
+input,
+select,
+textarea {
     width: 100%;
     border: 1px solid #565a89;
     padding-left: 6px;

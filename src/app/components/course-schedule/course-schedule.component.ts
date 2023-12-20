@@ -29,33 +29,33 @@ export class CourseScheduleComponent {
 
 
   constructor(
-    private coursescheduleService: ApiService,
+    private apiService: ApiService,
     private toast: NgToastService
   ) { }
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    this.coursescheduleService.getAllCourses()
+    this.apiService.getAllCourses()
       .subscribe({
         next: (response) => {
           //console.log(students);
           this.courses = response;
         },
-        error: (response) => {
-          console.log(response);
+        error: (error) => {
+          console.log(error);
         }
       });
   }
 
   addCourseSchedule() {
-    this.coursescheduleService.addCourseSchedule(this.courseScheduleRequest)
+    this.apiService.addCourseSchedule(this.courseScheduleRequest)
     .subscribe({
-      next: (course) => {
+      next: (response) => {
         this.coursescheduleform.resetForm();
         this.toast.success({detail:"SUCCESS",summary:"Course Schedule Added! ",duration:3000});
       },
-      error: (response) => {
+      error: (error) => {
 
       }
     })

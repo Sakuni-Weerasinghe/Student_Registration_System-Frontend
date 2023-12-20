@@ -1,6 +1,7 @@
 <div class="container my-5">
-    <h5 class="text-center pb-5"><strong>{{studentDetails.firstName + " " + studentDetails.lastName}}: Course Enrollment</strong></h5>
-    <div class="mb-5">   
+    <h5 class="text-center pb-5"><strong>{{studentDetails.firstName + " " + studentDetails.lastName}}: Course
+            Enrollment</strong></h5>
+    <div class="mb-5">
         <table class="table">
             <thead>
                 <th></th>
@@ -15,12 +16,13 @@
                     <td>{{course.courseCode}}</td>
                     <td>{{course.courseName}}</td>
                     <td>{{course.credits}}</td>
-                    <td>{{course.lecturer}}</td>        
+                    <td>{{course.lecturer}}</td>
                 </tr>
-            </tbody>  
+            </tbody>
         </table>
         <div class="row m-0">
-            <button type="submit" class="btn btn-dark  rounded-3 mt-4" id="login-btn" (click)="saveCourses()">Save Courses</button>
+            <button type="submit" class="btn btn-dark  rounded-3 mt-4" id="login-btn" (click)="saveCourses()">Save
+                Courses</button>
         </div>
     </div>
 

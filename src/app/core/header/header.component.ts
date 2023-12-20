@@ -17,29 +17,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class HeaderComponent implements OnInit {
   isLogin: boolean = false;
-
   navItems: NavItem[] = [];
-  private unAuthNavItems: NavItem[] = [
-    {
-      label: 'Home',
-      path: '',
-    },
-  ];
-  private authNavItems: NavItem[] = [
-    {
-      label: 'Dashboard',
-      path: 'dashboard',
-    },
-    {
-      label: 'Student',
-      path: 'student',
-    },
-    {
-      label: 'Courses',
-      path: 'course',
-    },
-
-  ];
 
   constructor(
     private authService: AuthService,
@@ -79,4 +57,28 @@ export class HeaderComponent implements OnInit {
   logOutHandler() {
     this.authService.logout();
   }
+
+  private unAuthNavItems: NavItem[] = [
+    {
+      label: 'Home',
+      path: '',
+    },
+  ];
+
+  
+  private authNavItems: NavItem[] = [
+    {
+      label: 'Dashboard',
+      path: 'dashboard',
+    },
+    {
+      label: 'Student',
+      path: 'student',
+    },
+    {
+      label: 'Courses',
+      path: 'course',
+    },
+
+  ];
 }

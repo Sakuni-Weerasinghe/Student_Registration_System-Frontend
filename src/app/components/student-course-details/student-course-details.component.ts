@@ -45,6 +45,36 @@ export class StudentCourseDetailsComponent {
     private toast: NgToastService,
     private router: Router) { }
 
+
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.route.paramMap.subscribe({
+      next: (params) => {
+        const idString = params.get('id');
+        if (idString) {
+          const id = +idString;
+          this.apiService.getStudent(id).subscribe({
+            next: (response) => {
+              this.studentDetails = response;
+            },
+          });
+        }
+      },
+    });
+
+    this.apiService.getAllCourses().subscribe({
+      next: (response) => {
+        //console.log(students);
+        this.initialCourseList = response;
+        this.courseList = [...response];
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
+  }
+
   getSelectedCourseList() {
     const studentId = this.studentDetails.studentId;
     const selectedList = this.courseList.filter(item => item.selected).map(item => {
@@ -83,32 +113,4 @@ export class StudentCourseDetailsComponent {
     }
   }
 
-  ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-    this.route.paramMap.subscribe({
-      next: (params) => {
-        const idString = params.get('id');
-        if (idString) {
-          const id = +idString;
-          this.apiService.getStudent(id).subscribe({
-            next: (response) => {
-              this.studentDetails = response;
-            },
-          });
-        }
-      },
-    });
-
-    this.apiService.getAllCourses().subscribe({
-      next: (response) => {
-        //console.log(students);
-        this.initialCourseList = response;
-        this.courseList = [...response];
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
-  }
 }

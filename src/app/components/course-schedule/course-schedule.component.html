@@ -10,13 +10,14 @@
                         </div>
                     </div>
                     <div class="panel-body pb-3">
-                        <form #coursescheduleform = "ngForm" (ngSubmit)="addCourseSchedule()">
+                        <form #coursescheduleform="ngForm" (ngSubmit)="addCourseSchedule()">
                             <!-- Course Code -->
                             <div class="mb-3">
                                 <label for="coursecode" class="form-label">Course Code</label>
-                                <select class="form-control" id="coursecode" name="coursecode" [(ngModel)]="courseScheduleRequest.courseCode">
+                                <select class="form-control" id="coursecode" name="coursecode"
+                                    [(ngModel)]="courseScheduleRequest.courseCode">
                                     @for (course of courses; track $index) {
-                                        <option [value]="course.courseCode">{{course.courseCode}}</option>
+                                    <option [value]="course.courseCode">{{course.courseCode}}</option>
                                     }
                                 </select>
                             </div>
@@ -25,7 +26,8 @@
                             <div class="mb-3">
                                 <label>Date</label>
                                 <br>
-                                <select class="form-control" id="date" name="date" [(ngModel)]="courseScheduleRequest.date">
+                                <select class="form-control" id="date" name="date"
+                                    [(ngModel)]="courseScheduleRequest.date">
                                     <option value="monday">Monday</option>
                                     <option value="tuesday">Tuesday</option>
                                     <option value="wednesday">Wednesday</option>
@@ -37,7 +39,8 @@
                             <!-- Time -->
                             <div class="mb-3">
                                 <label for="time" class="form-label">Time</label>
-                                <select class="form-control" id="time" name="time" [(ngModel)]="courseScheduleRequest.time">
+                                <select class="form-control" id="time" name="time"
+                                    [(ngModel)]="courseScheduleRequest.time">
                                     <option value="timeslot1">8.00 a.m - 9.00 a.m </option>
                                     <option value="timeslot2">9.00 a.m - 10.00 a.m </option>
                                     <option value="timeslot3">10.00 a.m - 11.00 a.m </option>
@@ -52,7 +55,8 @@
                             <!-- Venue -->
                             <div class="mb-3">
                                 <label for="venue" class="form-label">Venue</label>
-                                <select class="form-control" id="venue" name="venue" [(ngModel)]="courseScheduleRequest.venue">
+                                <select class="form-control" id="venue" name="venue"
+                                    [(ngModel)]="courseScheduleRequest.venue">
                                     <option value="hall01"> Hall 01 </option>
                                     <option value="hall02"> Hall 02 </option>
                                     <option value="hall03"> Hall 03 </option>
@@ -62,7 +66,8 @@
                             </div>
 
                             <!-- Register Button -->
-                            <button type="submit" class="btn btn-dark w-100 rounded-3 mt-4" id="course-add-btn">Add Course Schedule</button>                                                                                  
+                            <button type="submit" class="btn btn-dark w-100 rounded-3 mt-4" id="course-add-btn">Add
+                                Course Schedule</button>
                         </form>
                     </div>
                 </div>

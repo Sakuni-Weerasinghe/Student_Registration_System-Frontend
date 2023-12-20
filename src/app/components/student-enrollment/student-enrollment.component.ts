@@ -7,7 +7,7 @@ import { Student } from '../../Models/Student';
 @Component({
   selector: 'app-student-enrollment',
   standalone: true,
-  imports: [CommonModule,RouterModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './student-enrollment.component.html',
   styleUrl: './student-enrollment.component.css',
   providers: [ApiService]
@@ -15,20 +15,19 @@ import { Student } from '../../Models/Student';
 export class StudentEnrollmentComponent {
   students: Student[] = [];
 
-  constructor(private studentEnrollmentService: ApiService){}
+  constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    this.studentEnrollmentService.getAllStudents()
-    .subscribe({
-      next: (students) => {
-        //console.log(students);
-        this.students = students;
-      },
-      error: (response) => {
-        console.log(response);
-      }
-  });
+    this.apiService.getAllStudents()
+      .subscribe({
+        next: (response) => {
+          //console.log(students);
+          this.students = response;
+        },
+        error: (error) => {
+        }
+      });
   }
 }
