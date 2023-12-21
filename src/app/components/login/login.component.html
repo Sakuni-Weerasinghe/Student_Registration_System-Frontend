@@ -42,7 +42,7 @@
                     " class="text-danger">*Password is required</small>
                             </div>
                             <!-- Login Button -->
-                            <button (click)="onLogin()" type="submit" class="btn btn-dark w-100 rounded-3 mt-5 py-3"
+                            <button [disabled]="loginForm.invalid" (click)="onLogin()" type="submit" class="btn btn-dark w-100 rounded-3 mt-5 py-3" 
                                 id="login-btn">
                                 Login
                             </button>

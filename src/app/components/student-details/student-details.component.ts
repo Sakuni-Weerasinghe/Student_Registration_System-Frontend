@@ -4,6 +4,7 @@ import { ApiService } from '../../services/api.service';
 import { NgToastService } from 'ng-angular-popup';
 import { Student } from '../../Models/Student';
 import { HttpClient } from '@angular/common/http';
+import { Course } from '../../Models/Course';
 
 @Component({
   selector: 'app-student-details',
@@ -26,6 +27,16 @@ export class StudentDetailsComponent {
     addressLine2: ' ',
     addressLine3: ' ',
   };
+
+  courseDetails : Course = {
+    courseId: 0,
+    courseName: "",
+    courseCode: "",
+    credits: 0,
+    description: "",
+    lecturer: "",
+    selected: false
+  }
 
   constructor(
     private route: ActivatedRoute,

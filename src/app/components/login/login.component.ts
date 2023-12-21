@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder,FormGroup,FormControl,Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgToastModule } from 'ng-angular-popup';
@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  
+
   ngOnInit(): void { }
 
 
@@ -57,14 +57,18 @@ export class LoginComponent implements OnInit {
         error: (err) => {
           this.toast.error({
             detail: 'ERROR',
-            summary: 'Something Went Wrong!',
+            summary: err.error.message,
             duration: 3000,
           });
         },
       });
     } else {
       this.validateAllFormFields(this.loginForm);
-      alert('Your Form is invalid');
+      this.toast.error({
+        detail: 'ERROR',
+        summary: 'Please fill the required fields!',
+        duration: 3000,
+      });
     }
   }
 
