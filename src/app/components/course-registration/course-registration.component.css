@@ -12,9 +12,15 @@
     box-shadow: 50px #565a89;
 }
 
-input,
+.input-field,
 select,
 textarea {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+input{
     width: 100%;
     border: 1px solid #565a89;
     padding-left: 6px;

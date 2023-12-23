@@ -5,5 +5,6 @@ export interface Course {
   credits: number;
   description: string;
   lecturer: string;
+  registerDate: Date;
   selected: boolean;
 }

@@ -11,53 +11,106 @@
                         </div>
                     </div>
                     <div class="panel-body pb-3">
-                        <form #courseform="ngForm" (ngSubmit)="addCourse()">
-                            <!-- Course Code -->
-                            <div class="mb-3">
-                                <label for="coursecode" class="form-label">Course Code</label>
-                                <input type="text" class="form-control" id="coursecode" name="coursecode"
-                                    [(ngModel)]="courseRegisterRequest.courseCode">
+                        <form [formGroup]="courseRegistrationForm">
+
+                            <!-- Course Cde -->
+                            <div class="form-group pt-3">
+                                <label for="courseCode">Course Code</label>
+                                <div class="input-field" [class.error]="
+                    courseRegistrationForm.controls['courseCode'].dirty &&
+                    courseRegistrationForm.hasError('required', 'courseCode')
+                  ">
+                                    <input formControlName="courseCode" type="text" id="courseCode"
+                                        class="rounded-3 px-2 py-1 mt-1" />
+                                </div>
+                                <small *ngIf="
+                    courseRegistrationForm.controls['courseCode'].dirty &&
+                    courseRegistrationForm.hasError('required', 'courseCode')
+                  " class="text-danger">*Course Code is required</small>
                             </div>
-                            <!-- Course Name -->
-                            <div class="mb-3">
-                                <label for="coursename" class="form-label">Course Name</label>
-                                <input type="text" class="form-control" id="coursename" name="coursename"
-                                    [(ngModel)]="courseRegisterRequest.courseName">
+
+                            <!-- Course -->
+                            <div class="form-group pt-3">
+                                <label for="courseName">Course Name</label>
+                                <div class="input-field" [class.error]="
+                    courseRegistrationForm.controls['courseName'].dirty &&
+                    courseRegistrationForm.hasError('required', 'courseName')
+                  ">
+                                    <input formControlName="courseName" type="text" id="courseName"
+                                        class="rounded-3 px-2 py-1 mt-1" />
+                                </div>
+                                <small *ngIf="
+                    courseRegistrationForm.controls['courseName'].dirty &&
+                    courseRegistrationForm.hasError('required', 'courseName')
+                  " class="text-danger">*Course Name is required</small>
                             </div>
+
                             <!-- Credits -->
-                            <div class="mb-3">
-                                <label for="credits" class="form-label">Credits</label>
-                                <input type="number" class="form-control" id="credits" name="credits"
-                                    [(ngModel)]="courseRegisterRequest.credits">
+                            <div class="form-group pt-3">
+                                <label for="credits">Credits</label>
+                                <div class="input-field" [class.error]="
+                    courseRegistrationForm.controls['credits'].dirty &&
+                    courseRegistrationForm.hasError('required', 'credits')
+                  ">
+                                    <input formControlName="credits" type="number" id="credits"
+                                        class="rounded-3 px-2 py-1 mt-1" />
+                                </div>
+                                <small *ngIf="
+                    courseRegistrationForm.controls['credits'].dirty &&
+                    courseRegistrationForm.hasError('required', 'credits')
+                  " class="text-danger">*Number of credits is required</small>
                             </div>
+
                             <!-- Description -->
-                            <div class="mb-3">
-                                <label for="description" class="form-label">Description</label>
-                                <textarea rows="3" class="form-control" id="credits" name="credits"
-                                    [(ngModel)]="courseRegisterRequest.description"></textarea>
+                            <div class="form-group pt-3">
+                                <label for="description">Description</label>
+                                <div class="input-field" [class.error]="
+                    courseRegistrationForm.controls['description'].dirty &&
+                    courseRegistrationForm.hasError('required', 'description')
+                  ">
+                                    <textarea rows="3" formControlName="description" id="description"
+                                        class="rounded-3 px-2 py-1 mt-1"></textarea>
+
+                                </div>
+                                <small *ngIf="
+                    courseRegistrationForm.controls['description'].dirty &&
+                    courseRegistrationForm.hasError('required', 'description')
+                  " class="text-danger">*Description is required</small>
                             </div>
+
                             <!-- Lecturer -->
-                            <div class="mb-3">
-                                <label for="lecturer" class="form-label">Lecturer</label>
-                                <select class="form-control" id="lecturer" name="lecturer"
-                                    [(ngModel)]="courseRegisterRequest.lecturer">
-                                    <option value="Dr. R.N Nawarathna">Dr. R.N Nawarathna</option>
-                                    <option value="Dr. O.H Dayarathna">Dr. O.H Dayarathna</option>
-                                    <option value="Prof. S.K Kodithuwakku">Prof. S.K Kodithuwakku</option>
-                                    <option value="Dr. R.S Perera">Dr. R.S Perera</option>
-                                    <option value="Prof. P.H Karunarathna">Prof. P.H Karunarathna</option>
-                                    <option value="Prof. A.J Weerasinghe">Prof. A.J Weerasinghe</option>
-                                    <option value="Dr. A.V.H Basnayake">Dr. A.V.H Basnayake</option>
-                                    <option value="Dr. E.O de Silva">Dr. E.O de Silva</option>
-                                    <option value="Prof. S.W.L Piris">Prof. S.W.L Piris</option>
-                                    <option value="Dr. S.H.W Kumara">Dr. S.H.W Kumara</option>
-                                </select>
+                            <div class="form-group pt-3">
+                                <label for="lecturer">Lecturer Name</label>
+                                <div class="input-field" [class.error]="
+                    courseRegistrationForm.controls['lecturer'].dirty &&
+                    courseRegistrationForm.hasError('required', 'lecturer')
+                  ">
+                                    <select formControlName="lecturer" type="text" id="lecturer"
+                                        class="rounded-3 px-2 py-1 mt-1">
+                                        <option value="Dr. R.N Nawarathna">Dr. R.N Nawarathna</option>
+                                        <option value="Prof. P.H Karunarathna">Prof. P.H Karunarathna</option>
+                                        <option value="Prof. S.K Kodithuwakku">Prof. S.K Kodithuwakku</option>
+                                        <option value="Prof. S.W.L Piris">Prof. S.W.L Piris</option>
+                                        <option value="Prof. A.J Weerasinghe">Prof. A.J Weerasinghe</option>
+                                        <option value="Dr. S.H.W Kumara">Dr. S.H.W Kumara</option>
+                                        <option value="Dr. O.H Dayarathna">Dr. O.H Dayarathna</option>
+                                        <option value="Dr. R.S Perera">Dr. R.S Perera</option>
+                                        <option value="Dr. A.V.H Basnayake">Dr. A.V.H Basnayake</option>
+                                        <option value="Prof. K.L.F Gunarathna">Prof. K.L.F Gunarathna</option>
+                                        <option value="Dr. O.L.P Dissanayake">Dr. O.L.P Dissanayake</option>
+                                    </select>
+                                </div>
+                                <small *ngIf="
+                    courseRegistrationForm.controls['lecturer'].dirty &&
+                    courseRegistrationForm.hasError('required', 'lecturer')
+                  " class="text-danger">*Lecturer Name is required</small>
                             </div>
 
-
-                            <!-- Register Button -->
-                            <button type="submit" class="btn btn-dark w-100 rounded-3 mt-4" id="course-add-btn">Add
-                                Course</button>
+                            <!-- Login Button -->
+                            <button [disabled]="courseRegistrationForm.invalid" (click)="courseRegister()" type="submit"
+                                class="btn btn-dark w-100 rounded-3 mt-5 py-3" id="login-btn">
+                                Register
+                            </button>
                         </form>
                     </div>
                 </div>
