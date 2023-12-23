@@ -34,7 +34,6 @@ export class StudentDetailsComponent {
     courseName: "",
     courseCode: "",
     credits: 0,
-    description: "",
     lecturer: "",
     registerDate: new Date(),
     selected: false

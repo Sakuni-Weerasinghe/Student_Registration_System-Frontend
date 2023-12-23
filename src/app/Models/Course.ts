@@ -3,7 +3,6 @@ export interface Course {
   courseName: string;
   courseCode: string;
   credits: number;
-  description: string;
   lecturer: string;
   registerDate: Date;
   selected: boolean;

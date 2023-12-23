@@ -61,23 +61,6 @@
                   " class="text-danger">*Number of credits is required</small>
                             </div>
 
-                            <!-- Description -->
-                            <div class="form-group pt-3">
-                                <label for="description">Description</label>
-                                <div class="input-field" [class.error]="
-                    courseRegistrationForm.controls['description'].dirty &&
-                    courseRegistrationForm.hasError('required', 'description')
-                  ">
-                                    <textarea rows="3" formControlName="description" id="description"
-                                        class="rounded-3 px-2 py-1 mt-1"></textarea>
-
-                                </div>
-                                <small *ngIf="
-                    courseRegistrationForm.controls['description'].dirty &&
-                    courseRegistrationForm.hasError('required', 'description')
-                  " class="text-danger">*Description is required</small>
-                            </div>
-
                             <!-- Lecturer -->
                             <div class="form-group pt-3">
                                 <label for="lecturer">Lecturer Name</label>
