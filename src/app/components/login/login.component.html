@@ -12,39 +12,39 @@
                     <div class="panel-body pb-5">
                         <form [formGroup]="loginForm">
                             <!-- User Name -->
-                            
+
                             <div class="form-group pt-3">
                                 <label for="username">User Name</label>
                                 <div class="input-field" [class.error]="
-                      loginForm.controls['username'].dirty &&
-                      loginForm.hasError('required', 'username')
-                    ">
+                    loginForm.controls['username'].dirty &&
+                    loginForm.hasError('required', 'username')
+                  ">
                                     <input formControlName="username" type="text" id="username"
                                         class="rounded-3 px-2 py-1 mt-1" />
                                 </div>
                                 <small *ngIf="
-                      loginForm.controls['username'].dirty &&
-                      loginForm.hasError('required', 'username')
-                    " class="text-danger">*Username is required</small>
+                    loginForm.controls['username'].dirty &&
+                    loginForm.hasError('required', 'username')
+                  " class="text-danger">*Username is required</small>
                             </div>
                             <!-- Password -->
                             <div class="form-group pt-3">
                                 <label for="password">Password</label>
                                 <div class="input-field" [class.error]="
-                      loginForm.controls['password'].dirty &&
-                      loginForm.hasError('required', 'password')
-                    ">
+                    loginForm.controls['password'].dirty &&
+                    loginForm.hasError('required', 'password')
+                  ">
                                     <input formControlName="password" type="password" id="password"
                                         class="rounded-3 px-2 py-1 mt-1" />
                                 </div>
                                 <small *ngIf="
-                      loginForm.controls['password'].dirty &&
-                      loginForm.hasError('required', 'password')
-                    " class="text-danger">*Password is required</small>
+                    loginForm.controls['password'].dirty &&
+                    loginForm.hasError('required', 'password')
+                  " class="text-danger">*Password is required</small>
                             </div>
                             <!-- Login Button -->
-                            <button [disabled]="loginForm.invalid" (click)="onLogin()" type="submit" class="btn btn-dark w-100 rounded-3 mt-5 py-3" 
-                                id="login-btn">
+                            <button [disabled]="loginForm.invalid" (click)="onLogin()" type="submit"
+                                class="btn btn-dark w-100 rounded-3 mt-5 py-3" id="login-btn">
                                 Login
                             </button>
                         </form>

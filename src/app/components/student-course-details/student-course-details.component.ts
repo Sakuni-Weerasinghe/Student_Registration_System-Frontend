@@ -34,7 +34,7 @@ export class StudentCourseDetailsComponent {
     birthday: new Date(),
     gender: ' ',
     email: ' ',
-    phones: ' ',
+    phone: ' ',
     addressLine1: ' ',
     addressLine2: ' ',
     addressLine3: ' ',
