@@ -17,6 +17,7 @@ import { Course } from '../../Models/Course';
 export class StudentDetailsComponent {
   studentDetails: Student = {
     studentId: 0,
+    studentRegistrationNumber: ' ',
     firstName: ' ',
     lastName: ' ',
     birthday: new Date(),
@@ -28,13 +29,14 @@ export class StudentDetailsComponent {
     addressLine3: ' ',
   };
 
-  courseDetails : Course = {
+  courseDetails: Course = {
     courseId: 0,
     courseName: "",
     courseCode: "",
     credits: 0,
     description: "",
     lecturer: "",
+    registerDate: new Date(),
     selected: false
   }
 

@@ -1,5 +1,6 @@
 export interface Student {
     studentId: number;
+    studentRegistrationNumber : string;
     firstName: string;
     lastName: string;
     birthday: Date;

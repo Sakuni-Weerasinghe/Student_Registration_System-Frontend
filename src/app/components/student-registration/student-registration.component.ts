@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Student } from '../../Models/Student';
@@ -19,6 +19,7 @@ export class StudentRegistrationComponent {
 
   studentRegisterRequest: Student = {
     studentId: 0,
+    studentRegistrationNumber: ' ',
     firstName: ' ',
     lastName: ' ',
     birthday: new Date(),
@@ -36,11 +37,12 @@ export class StudentRegistrationComponent {
     private fb: FormBuilder
   ) {
     this.studentRegistrationForm = this.fb.group({
+      studentRegistrationNumber: ['', Validators.required],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       birthday: [new Date(), Validators.required],
       gender: ['', Validators.required],
-      phone: ['',[ Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
+      phone: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
       addressLine1: ['', Validators.required],
       addressLine2: ['', Validators.required],
       addressLine3: [''],
@@ -57,7 +59,14 @@ export class StudentRegistrationComponent {
             summary: 'Student Registered! ',
             duration: 3000,
           });
-        }
+        },
+        error: (err) => {
+          this.toast.error({
+            detail: 'ERROR',
+            summary: err.error.message,
+            duration: 3000,
+          });
+        },
       })
     } else {
       this.validateAllFormFields(this.studentRegistrationForm);

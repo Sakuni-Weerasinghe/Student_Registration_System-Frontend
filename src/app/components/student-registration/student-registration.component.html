@@ -12,8 +12,25 @@
                     </div>
                     <div class="panel-body pb-3">
                         <form [formGroup]="studentRegistrationForm">
+                            <!-- Registration Number -->
+                            <div class="form-group mb-3">
+                                <label for="studentRegistrationNumber">Registration Number</label>
+                                <div class="input-field" [class.error]="
+                                studentRegistrationForm.controls['studentRegistrationNumber'].dirty &&
+                                studentRegistrationForm.hasError('required', 'registrationNumber')">
+                                    <input formControlName="studentRegistrationNumber" type="text"
+                                        class="rounded-3 px-2 py-1 mt-1" id="studentRegistrationNumber"
+                                        placeholder="S/XX/XXX">
+                                </div>
+                                <small *ngIf="
+                                          studentRegistrationForm.controls['studentRegistrationNumber'].dirty &&
+                                          studentRegistrationForm.hasError('required', 'studentRegistrationNumber')
+                                        " class="text-danger">*Registration Number is required
+                                </small>
+                            </div>
+
                             <!-- First Name -->
-                            <div class="mb-3">
+                            <div class="form-group mb-3">
                                 <label for="firstName">First Name</label>
                                 <div class="input-field" [class.error]="
                                 studentRegistrationForm.controls['firstName'].dirty &&
@@ -29,7 +46,7 @@
                             </div>
 
                             <!-- Last Name -->
-                            <div class="mb-3">
+                            <div class="form-group mb-3">
                                 <label for="lastName">Last Name</label>
                                 <div class="input-field" [class.error]="
                                 studentRegistrationForm.controls['lastName'].dirty &&
@@ -45,7 +62,7 @@
                             </div>
 
                             <!-- Birthday -->
-                            <div class="mb-3">
+                            <div class="form-group mb-3">
                                 <label for="birthday">Birthday</label>
                                 <div class="input-field" [class.error]="
                                 studentRegistrationForm.controls['birthday'].dirty &&
@@ -61,7 +78,7 @@
                             </div>
 
                             <!-- Gender -->
-                            <div class="mb-3">
+                            <div class="form-group mb-3">
                                 <label for="gender">Gender</label>
                                 <div class="input-field" [class.error]="
                                 studentRegistrationForm.controls['gender'].dirty &&
@@ -80,7 +97,7 @@
                             </div>
 
                             <!-- Phone Number -->
-                            <div class="mb-3">
+                            <div class="form-group mb-3">
                                 <label for="phone">Phone Number</label>
                                 <div class="input-field" [class.error]="
                                 studentRegistrationForm.controls['phone'].dirty &&
@@ -94,13 +111,14 @@
                                         " class="text-danger">*Phone number is required
                                 </small>
 
-                                <small *ngIf="studentRegistrationForm.hasError('pattern','phone')"
+                                <small *ngIf="studentRegistrationForm.controls['phone'].dirty &&
+                                        studentRegistrationForm.hasError('pattern','phone')"
                                     class="text-danger">*Please, Enter valid Phone Number
                                 </small>
                             </div>
 
                             <!-- Address -->
-                            <div class="mb-3">
+                            <div class="form-group mb-3">
                                 <label for="address">Address</label>
                                 <div class="input-field" [class.error]="
                                 studentRegistrationForm.controls['addressLine1'].dirty &&

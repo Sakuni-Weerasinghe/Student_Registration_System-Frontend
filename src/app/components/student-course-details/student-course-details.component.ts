@@ -16,7 +16,7 @@ import { HttpClient } from '@angular/common/http';
   imports: [FormsModule, ReactiveFormsModule, CommonModule, NgToastModule],
   templateUrl: './student-course-details.component.html',
   styleUrl: './student-course-details.component.css',
-  providers: [ApiService,HttpClient],
+  providers: [ApiService, HttpClient],
 })
 export class StudentCourseDetailsComponent {
   courses_ = new FormControl('');
@@ -29,6 +29,7 @@ export class StudentCourseDetailsComponent {
 
   studentDetails: Student = {
     studentId: 0,
+    studentRegistrationNumber: ' ',
     firstName: ' ',
     lastName: ' ',
     birthday: new Date(),
