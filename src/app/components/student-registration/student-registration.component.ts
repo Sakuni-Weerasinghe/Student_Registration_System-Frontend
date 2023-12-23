@@ -1,5 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';
+import { Component} from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Student } from '../../Models/Student';
 import { NgToastModule, NgToastService } from 'ng-angular-popup';
@@ -9,14 +9,13 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-student-registration',
   standalone: true,
-  imports: [FormsModule, CommonModule, NgToastModule],
+  imports: [CommonModule, NgToastModule, ReactiveFormsModule],
   templateUrl: './student-registration.component.html',
   styleUrl: './student-registration.component.css',
   providers: [HttpClient]
 })
 export class StudentRegistrationComponent {
-  @ViewChild('form')
-  form!: NgForm;
+  studentRegistrationForm: FormGroup;
 
   studentRegisterRequest: Student = {
     studentId: 0,
@@ -25,7 +24,7 @@ export class StudentRegistrationComponent {
     birthday: new Date(),
     gender: ' ',
     email: ' ',
-    phones: ' ',
+    phone: ' ',
     addressLine1: ' ',
     addressLine2: ' ',
     addressLine3: ' ',
@@ -33,20 +32,51 @@ export class StudentRegistrationComponent {
 
   constructor(
     private apiService: ApiService,
-    private toast: NgToastService
-  ) { }
+    private toast: NgToastService,
+    private fb: FormBuilder
+  ) {
+    this.studentRegistrationForm = this.fb.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      birthday: [new Date(), Validators.required],
+      gender: ['', Validators.required],
+      phone: ['',[ Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
+      addressLine1: ['', Validators.required],
+      addressLine2: ['', Validators.required],
+      addressLine3: [''],
+    })
+  }
 
-  registerStudent() {
-    this.apiService.registerStudent(this.studentRegisterRequest).subscribe({
-      next: (response) => {
-        this.form.resetForm();
-        this.toast.success({
-          detail: 'SUCCESS',
-          summary: 'Student Registered! ',
-          duration: 3000,
-        });
-      },
-      error: (error) => { },
+  onRegister() {
+    if (this.studentRegistrationForm.valid) {
+      this.apiService.registerStudent(this.studentRegistrationForm.value).subscribe({
+        next: (response) => {
+          this.studentRegistrationForm.reset();
+          this.toast.success({
+            detail: 'SUCCESS',
+            summary: 'Student Registered! ',
+            duration: 3000,
+          });
+        }
+      })
+    } else {
+      this.validateAllFormFields(this.studentRegistrationForm);
+      this.toast.error({
+        detail: 'ERROR',
+        summary: 'Please fill the required fields!',
+        duration: 3000,
+      });
+    }
+  }
+
+  private validateAllFormFields(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach((field) => {
+      const control = formGroup.get(field);
+      if (control instanceof FormControl) {
+        control.markAsDirty({ onlySelf: true });
+      } else if (control instanceof FormGroup) {
+        this.validateAllFormFields(control);
+      }
     });
   }
 }

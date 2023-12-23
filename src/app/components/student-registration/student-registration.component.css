@@ -3,13 +3,19 @@
     margin-bottom: 10px;
 }
 
-#login-btn{
+#register-btn{
     margin-top: 20px;
 }
 
 .panel{
     min-height: 100px;
     box-shadow: 50px #565a89;
+}
+
+.input-field, select {
+    display: flex;
+    align-items: center;
+    width: 100%;
 }
 
 input{
