@@ -1,20 +1,25 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { NgToastService } from 'ng-angular-popup';
 import { Student } from '../../Models/Student';
 import { HttpClient } from '@angular/common/http';
 import { Course } from '../../Models/Course';
+import { MatIconModule } from '@angular/material/icon';
+import { StudentCourses_ } from '../../Models/StudentCourse';
 
 @Component({
   selector: 'app-student-details',
   standalone: true,
-  imports: [],
+  imports: [MatIconModule, CommonModule],
   templateUrl: './student-details.component.html',
   styleUrl: './student-details.component.css',
   providers: [HttpClient]
 })
 export class StudentDetailsComponent {
+  studentCourses: StudentCourses_[] = [];
+
   studentDetails: Student = {
     studentId: 0,
     studentRegistrationNumber: ' ',
@@ -58,9 +63,22 @@ export class StudentDetailsComponent {
               this.studentDetails = response;
             },
           });
+
+          this.apiService.getStudentCourses(id).subscribe({
+            next: (response) => {
+              this.studentCourses = response;
+            },
+            error: (error) => {
+              console.error('Error fetching student courses', error);
+            },
+          })
         }
       },
     });
 
+  }
+
+  deleteCourse(){
+    
   }
 }

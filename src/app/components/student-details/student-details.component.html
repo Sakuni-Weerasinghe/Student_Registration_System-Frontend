@@ -1,7 +1,8 @@
 <div class="container my-5">
     <h4 class="text-center pb-5"><strong>{{studentDetails.firstName + " " + studentDetails.lastName}}</strong></h4>
     <div>
-        <h4 class="text-left pb-4"><strong>Personal Details</strong></h4>
+        <h5 class="text-left pb-4"><strong>Personal Details</strong> <mat-icon class="px-5" aria-hidden="false"
+                aria-label="delete icon" fontIcon="edit" color="primary"></mat-icon></h5>
         <div class="pb-5">
             <table class="table mx-5">
                 <tr>
@@ -33,26 +34,29 @@
             </table>
         </div>
     </div>
-    <!-- <div>
-        <h4 class="text-left pb-5"><strong>Course Details</strong></h4>
+    <div>
+        <h5 class="text-left pb-4"><strong>Course Details</strong></h5>
         <div>
-            <table class="table">
+            <table class="table mx-5">
                 <thead>
                     <th>Course Code</th>
                     <th>Course Name</th>
+                    <th>Credits</th>
                     <th>Lecturer</th>
+                    <th></th>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let student of students">
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                    <tr *ngFor="let course of studentCourses">
+                        <td>{{course.courses.courseCode}}</td>
+                        <td>{{course.courses.courseName}}</td>
+                        <td>{{course.courses.credits}}</td>
+                        <td>{{course.courses.lecturer}}</td>
+                        <th><mat-icon aria-hidden="false" aria-label="delete icon" fontIcon="delete"
+                                color="warn" (click)="deleteCourse()"></mat-icon></th>
                     </tr>
                 </tbody>
             </table>
 
         </div>
-    </div> -->
-    <button type="submit" class="btn btn-dark w-45 rounded-3 mt-4 " id="login-btn">Edit</button>
-    <button type="submit" class="btn btn-danger w-45  rounded-3 mt-4 mx-5" id="login-btn">Delete</button>
+    </div>
 </div>

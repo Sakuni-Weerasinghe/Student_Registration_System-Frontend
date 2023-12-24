@@ -4,7 +4,7 @@ import { Student } from '../Models/Student';
 import { Observable } from 'rxjs';
 import { Course } from '../Models/Course';
 import { CourseSchedule } from '../Models/CourseSchedule';
-import { StudentCourses } from '../Models/StudentCourse';
+import { StudentCourses, StudentCourses_ } from '../Models/StudentCourse';
 
 @Injectable({
   providedIn: 'root',
@@ -58,8 +58,8 @@ export class ApiService {
     );
   }
 
-  getStudentCourses(id: number): Observable<StudentCourses[]> {
-    return this.http.get<StudentCourses[]>(this.baseUrl + 'StudentCourses/Courses/' + id)
+  getStudentCourses(id: number): Observable<StudentCourses_[]> {
+    return this.http.get<StudentCourses_[]>(this.baseUrl + 'StudentCourses/Courses/' + id)
   }
 
 }
