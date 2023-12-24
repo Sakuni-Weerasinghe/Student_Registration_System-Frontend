@@ -6,6 +6,9 @@
             <th>Course Name</th>
             <th>Credits</th>
             <th>Lecturer</th>
+            <th>Course Schedule</th>
+            <th></th>
+            <th></th>
             <th></th>
         </thead>
         <tbody>
@@ -14,7 +17,23 @@
                 <td>{{course.courseName}}</td>
                 <td>{{course.credits}}</td>
                 <td>{{course.lecturer}}</td>
-                <td><button class="btn btn-sm btn-primary rounded-3 detail-btn">Course Schedule</button></td>
+                <td>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Monday </td>
+                                <td class="px-2">8.00-10.00 </td>
+                                <td>Hall 01 </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td><mat-icon aria-hidden="false" aria-label="user icon" fontIcon="account_circle"></mat-icon>
+                </td>
+                <td><mat-icon aria-hidden="false" aria-label="edit icon" fontIcon="edit" color="primary"></mat-icon>
+                </td>
+                <td><mat-icon aria-hidden="false" aria-label="delete icon" fontIcon="delete" color="warn"></mat-icon>
+                </td>
             </tr>
         </tbody>
     </table>

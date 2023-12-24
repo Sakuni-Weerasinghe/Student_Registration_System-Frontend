@@ -4,14 +4,15 @@ import { ApiService } from '../../services/api.service';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-course-list',
   standalone: true,
-  imports: [RouterModule, CommonModule],
+  imports: [RouterModule, CommonModule, MatIconModule],
   templateUrl: './course-list.component.html',
   styleUrl: './course-list.component.css',
-  providers: [ApiService,HttpClient]
+  providers: [ApiService, HttpClient]
 })
 export class CourseListComponent {
   courses: Course[] = [];
