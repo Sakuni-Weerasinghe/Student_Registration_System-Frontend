@@ -1,3 +1,5 @@
+import { CourseSchedule_ } from "./CourseSchedule";
+
 export interface Course {
   courseId: number;
   courseName: string;
@@ -6,4 +8,5 @@ export interface Course {
   lecturer: string;
   registerDate: Date;
   selected: boolean;
+  courseSchedules: CourseSchedule_[];
 }

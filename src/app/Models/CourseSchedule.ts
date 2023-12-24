@@ -5,3 +5,12 @@ export interface CourseSchedule {
     time: string;
     venue: string;
 }
+
+export interface CourseSchedule_ {
+    courseScheduleId: number;
+    courseId: number;
+    date: string;
+    time: string;
+    venue: string;
+    courses: {};
+}

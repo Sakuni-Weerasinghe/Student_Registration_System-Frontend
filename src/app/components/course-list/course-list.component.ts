@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
+import { CourseSchedule_ } from '../../Models/CourseSchedule';
 
 @Component({
   selector: 'app-course-list',
@@ -32,5 +33,8 @@ export class CourseListComponent {
           console.log(response);
         }
       });
+
+
+
   }
 }

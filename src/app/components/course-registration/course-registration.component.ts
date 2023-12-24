@@ -24,7 +24,8 @@ export class CourseRegistrationComponent {
     credits: 0,
     lecturer: " ",
     registerDate: new Date(),
-    selected: false
+    selected: false,
+    courseSchedules: []
   };
 
   constructor(

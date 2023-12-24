@@ -18,15 +18,16 @@
                 <td>{{course.credits}}</td>
                 <td>{{course.lecturer}}</td>
                 <td>
-                    <table>
+                    <table *ngIf="course.courseSchedules && course.courseSchedules.length > 0">
                         <tbody>
-                            <tr>
-                                <td>Monday </td>
-                                <td class="px-2">8.00-10.00 </td>
-                                <td>Hall 01 </td>
+                            <tr *ngFor="let schedule of course.courseSchedules">
+                                <td>{{schedule.date}}</td>
+                                <td class="px-2">{{schedule.time}} </td>
+                                <td>{{schedule.venue}} </td>
                             </tr>
                         </tbody>
                     </table>
+                    <p *ngIf="!course.courseSchedules || course.courseSchedules.length <= 0">Schedule Not Added!</p>
                 </td>
                 <td><mat-icon aria-hidden="false" aria-label="user icon" fontIcon="account_circle"></mat-icon>
                 </td>
