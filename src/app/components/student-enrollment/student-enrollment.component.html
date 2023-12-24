@@ -3,13 +3,15 @@
     <div class="text-center">
         <img class="pb-5" src="../../../assets/Student Enrollment.jpg" alt="" height="180px">
     </div>
-    <table class="table" *ngIf="students && students.length > 0">
+    <table class="table pt-2" *ngIf="students && students.length > 0">
         <thead>
+            <th>Registration Number</th>
             <th>Student Name</th>
             <th></th>
         </thead>
         <tbody>
             <tr *ngFor="let student of students">
+                <td>{{student.studentRegistrationNumber}}</td>
                 <td>{{student.firstName + " " + student.lastName}}</td>
                 <td><button class="btn btn-sm btn-primary w-50 rounded-3 " id="enroll-btn"
                         [routerLink]="['/student-enrollment/enroll',student.studentId]">Enroll</button></td>

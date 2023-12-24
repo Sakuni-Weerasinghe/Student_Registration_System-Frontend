@@ -36,7 +36,6 @@ export class CourseRegistrationComponent {
       courseName: ['', Validators.required],
       courseCode: ['', Validators.required],
       credits: ['', Validators.required],
-      description: ['', Validators.required],
       lecturer: ['', Validators.required]
     })
   }
