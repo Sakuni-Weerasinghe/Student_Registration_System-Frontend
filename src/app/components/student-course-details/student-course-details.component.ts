@@ -9,6 +9,7 @@ import { StudentCourses } from '../../Models/StudentCourse';
 import { NgToastService } from 'ng-angular-popup';
 import { NgToastModule } from 'ng-angular-popup';
 import { HttpClient } from '@angular/common/http';
+import { StudentCourseDialogComponent } from '../student-course-dialog/student-course-dialog.component';
 
 @Component({
   selector: 'app-student-course-details',
@@ -45,12 +46,10 @@ export class StudentCourseDetailsComponent {
     private route: ActivatedRoute,
     private apiService: ApiService,
     private toast: NgToastService,
-    private router: Router) { }
+    private router: Router,) { }
 
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
     this.route.paramMap.subscribe({
       next: (params) => {
         const idString = params.get('id');
@@ -59,6 +58,7 @@ export class StudentCourseDetailsComponent {
           this.apiService.getStudent(id).subscribe({
             next: (response) => {
               this.studentDetails = response;
+              this.loadStudentEnrolledCourses(); // Fetch and filter enrolled courses
             },
           });
         }
@@ -67,9 +67,7 @@ export class StudentCourseDetailsComponent {
 
     this.apiService.getAllCourses().subscribe({
       next: (response) => {
-        //console.log(students);
         this.initialCourseList = response;
-        this.courseList = [...response];
       },
       error: (error) => {
         console.log(error);
@@ -77,13 +75,37 @@ export class StudentCourseDetailsComponent {
     });
   }
 
+  loadStudentEnrolledCourses() {
+    const studentId = this.studentDetails.studentId;
+    this.apiService.getStudentCourses(studentId).subscribe({
+      next: (enrolledCourses) => {
+        if (enrolledCourses && enrolledCourses.length > 0) {
+          // Student has enrolled courses, filter them out
+          this.courseList = this.filterEnrolledCourses(enrolledCourses, this.initialCourseList);
+        } else {
+          // Student has no enrolled courses, show all courses
+          this.courseList = [...this.initialCourseList];
+        }
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
+  }
+
+
   getSelectedCourseList() {
     const studentId = this.studentDetails.studentId;
     const selectedList = this.courseList.filter(item => item.selected).map(item => {
-      return { "studentId": studentId, "courseId": item.courseId }
+      return { "studentId": studentId, "courseId": item.courseId, "enrollmentDate": new Date() }
     });
 
     return selectedList;
+  }
+
+  filterEnrolledCourses(enrolledCourses: StudentCourses[], allCourses: Course[]): Course[] {
+    const enrolledCourseIds = enrolledCourses.map(course => course.courseId);
+    return allCourses.filter(course => !enrolledCourseIds.includes(course.courseId));
   }
 
   saveCourses() {

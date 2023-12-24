@@ -57,4 +57,9 @@ export class ApiService {
       studentCourseRequest
     );
   }
+
+  getStudentCourses(id: number): Observable<StudentCourses[]> {
+    return this.http.get<StudentCourses[]>(this.baseUrl + 'StudentCourses/Courses/' + id)
+  }
+
 }
