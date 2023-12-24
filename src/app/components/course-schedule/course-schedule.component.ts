@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Course } from '../../Models/Course';
 import { CourseSchedule } from '../../Models/CourseSchedule';
@@ -10,14 +10,13 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-course-schedule',
   standalone: true,
-  imports: [FormsModule, CommonModule, NgToastModule],
+  imports: [ReactiveFormsModule, CommonModule, NgToastModule],
   templateUrl: './course-schedule.component.html',
   styleUrl: './course-schedule.component.css',
   providers: [HttpClient]
 })
 export class CourseScheduleComponent {
-  @ViewChild('coursescheduleform')
-  coursescheduleform!: NgForm;
+  courseScheduleForm: FormGroup;
 
   courses: Course[] = [];
 
@@ -32,8 +31,16 @@ export class CourseScheduleComponent {
 
   constructor(
     private apiService: ApiService,
-    private toast: NgToastService
-  ) { }
+    private toast: NgToastService,
+    private fb: FormBuilder
+  ) {
+    this.courseScheduleForm = this.fb.group({
+      courseCode: ['', Validators.required],
+      date: ['', Validators.required],
+      time: ['', Validators.required],
+      venue: ['', Validators.required]
+    })
+  }
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -50,17 +57,44 @@ export class CourseScheduleComponent {
       });
   }
 
-  addCourseSchedule() {
-    this.apiService.addCourseSchedule(this.courseScheduleRequest)
-    .subscribe({
-      next: (response) => {
-        this.coursescheduleform.resetForm();
-        this.toast.success({detail:"SUCCESS",summary:"Course Schedule Added! ",duration:3000});
-      },
-      error: (error) => {
+  scheduleRegister() {
+    if (this.courseScheduleForm.valid) {
+      this.apiService.addCourseSchedule(this.courseScheduleForm.value).subscribe({
+        next: (res) => {
+          this.courseScheduleForm.reset();
+          this.toast.success({
+            detail: 'SUCCESS',
+            summary: "Course Schedule Registered",
+            duration: 3000,
+          });
+        },
+        error: (err) => {
+          this.toast.error({
+            detail: 'ERROR',
+            summary: err.error.message,
+            duration: 3000,
+          });
+        }
+      });
+    } else {
+      this.validateAllFormFields(this.courseScheduleForm);
+      this.toast.error({
+        detail: 'ERROR',
+        summary: 'Please fill the required fields!',
+        duration: 3000,
+      });
+    }
+  }
 
+  private validateAllFormFields(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach((field) => {
+      const control = formGroup.get(field);
+      if (control instanceof FormControl) {
+        control.markAsDirty({ onlySelf: true });
+      } else if (control instanceof FormGroup) {
+        this.validateAllFormFields(control);
       }
-    })
+    });
   }
 
 }

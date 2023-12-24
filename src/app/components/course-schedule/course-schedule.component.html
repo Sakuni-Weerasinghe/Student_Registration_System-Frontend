@@ -1,73 +1,142 @@
 <div class="outer pt-5 pb-5">
     <div class="container">
         <div class="row">
-            <div class="offset-md-3 col-lg-8 col-md-8 offset-lg-3 offset-md-4">
+            <div class="offset-md-3 col-lg-7 col-md-7 offset-lg-3 offset-md-4">
                 <div class="panel border rounded-3 shadow px-5 pb-4">
                     <div class="panel-heading">
                         <div class="form-title text-center p-4">
-                            <h5 class="text-center pb-3"><strong>Add Course Schedule</strong></h5>
-                            <img class="" src="../../../assets/Course Schedule.jpg" alt="" width="100px" height="100px">
+                            <h5 class="text-center pb-3">
+                                <strong>Add Course Schedule</strong>
+                            </h5>
+                            <img class="" src="../../../assets/Course Schedule.jpg" alt="" width="100px"
+                                height="100px" />
                         </div>
                     </div>
                     <div class="panel-body pb-3">
-                        <form #coursescheduleform="ngForm" (ngSubmit)="addCourseSchedule()">
+                        <form [formGroup]="courseScheduleForm">
+
                             <!-- Course Code -->
-                            <div class="mb-3">
-                                <label for="coursecode" class="form-label">Course Code</label>
-                                <select class="form-control" id="coursecode" name="coursecode"
-                                    [(ngModel)]="courseScheduleRequest.courseCode">
-                                    @for (course of courses; track $index) {
-                                    <option [value]="course.courseCode">{{course.courseCode}}</option>
-                                    }
-                                </select>
+                            <div class="form-group pt-3">
+                                <label for="courseCode">Course Code</label>
+                                <div class="input-field" [class.error]="
+                    courseScheduleForm.controls['courseCode'].dirty &&
+                    courseScheduleForm.hasError('required', 'courseCode')
+                  ">
+                                    <select formControlName="courseCode" type="text" id="courseCode"
+                                        class="rounded-3 px-2 py-1 mt-1">
+                                        @for (course of courses; track $index) {
+                                        <option [value]="course.courseCode">
+                                            {{ course.courseCode }}
+                                        </option>
+                                        }
+                                    </select>
+                                </div>
+                                <small *ngIf="
+                    courseScheduleForm.controls['courseCode'].dirty &&
+                    courseScheduleForm.hasError('required', 'courseCode')
+                  " class="text-danger">*Course Code is required</small>
                             </div>
 
                             <!-- Date -->
-                            <div class="mb-3">
-                                <label>Date</label>
-                                <br>
-                                <select class="form-control" id="date" name="date"
-                                    [(ngModel)]="courseScheduleRequest.date">
-                                    <option value="monday">Monday</option>
-                                    <option value="tuesday">Tuesday</option>
-                                    <option value="wednesday">Wednesday</option>
-                                    <option value="thursday">Thursday</option>
-                                    <option value="friday">Friday</option>
-                                </select>
+                            <div class="form-group pt-3">
+                                <label for="date">Date</label>
+                                <div class="input-field" [class.error]="
+                    courseScheduleForm.controls['date'].dirty &&
+                    courseScheduleForm.hasError('required', 'date')
+                  ">
+                                    <select formControlName="date" type="text" id="date"
+                                        class="rounded-3 px-2 py-1 mt-1">
+                                        <option value="Monday">Monday</option>
+                                        <option value="Tuesday">Tuesday</option>
+                                        <option value="Wednesday">Wednesday</option>
+                                        <option value="Thursday">Thursday</option>
+                                        <option value="Friday">Friday</option>
+                                    </select>
+                                </div>
+                                <small *ngIf="
+                    courseScheduleForm.controls['date'].dirty &&
+                    courseScheduleForm.hasError('required', 'date')
+                  " class="text-danger">*Date is required</small>
                             </div>
 
                             <!-- Time -->
-                            <div class="mb-3">
-                                <label for="time" class="form-label">Time</label>
-                                <select class="form-control" id="time" name="time"
-                                    [(ngModel)]="courseScheduleRequest.time">
-                                    <option value="timeslot1">8.00 a.m - 9.00 a.m </option>
-                                    <option value="timeslot2">9.00 a.m - 10.00 a.m </option>
-                                    <option value="timeslot3">10.00 a.m - 11.00 a.m </option>
-                                    <option value="timeslot4">11.00 a.m - 12.00 p.m </option>
-                                    <option value="timeslot5">1.00 p.m - 2.00 p.m </option>
-                                    <option value="timeslot6">2.00 p.m - 3.00 p.m </option>
-                                    <option value="timeslot7">3.00 p.m - 4.00 p.m </option>
-                                    <option value="timeslot8">4.00 p.m - 5.00 p.m </option>
-                                </select>
+                            <div class="form-group pt-3">
+                                <label for="time">Time</label>
+                                <div class="input-field" [class.error]="
+                    courseScheduleForm.controls['time'].dirty &&
+                    courseScheduleForm.hasError('required', 'time')
+                  ">
+                                    <select formControlName="time" type="text" id="time"
+                                        class="rounded-3 px-2 py-1 mt-1">
+                                        <option value="8.00 a.m - 9.00 a.m">
+                                            8.00 a.m - 9.00 a.m
+                                        </option>
+                                        <option value="9.00 a.m - 10.00 a.m">
+                                            9.00 a.m - 10.00 a.m
+                                        </option>
+                                        <option value="10.00 a.m - 11.00 a.m">
+                                            10.00 a.m - 11.00 a.m
+                                        </option>
+                                        <option value="11.00 a.m - 12.00 p.m">
+                                            11.00 a.m - 12.00 p.m
+                                        </option>
+                                        <option value="1.00 p.m - 2.00 p.m">
+                                            1.00 p.m - 2.00 p.m
+                                        </option>
+                                        <option value="2.00 p.m - 3.00 p.m">
+                                            2.00 p.m - 3.00 p.m
+                                        </option>
+                                        <option value="3.00 p.m - 4.00 p.m">
+                                            3.00 p.m - 4.00 p.m
+                                        </option>
+                                        <option value="4.00 p.m - 5.00 p.m">
+                                            4.00 p.m - 5.00 p.m
+                                        </option>
+                                    </select>
+                                </div>
+                                <small *ngIf="
+                    courseScheduleForm.controls['time'].dirty &&
+                    courseScheduleForm.hasError('required', 'time')
+                  " class="text-danger">*Time is required</small>
                             </div>
 
                             <!-- Venue -->
-                            <div class="mb-3">
-                                <label for="venue" class="form-label">Venue</label>
-                                <select class="form-control" id="venue" name="venue"
-                                    [(ngModel)]="courseScheduleRequest.venue">
-                                    <option value="hall01"> Hall 01 </option>
-                                    <option value="hall02"> Hall 02 </option>
-                                    <option value="hall03"> Hall 03 </option>
-                                    <option value="hall04"> Hall 04 </option>
-                                    <option value="hall05"> Hall 05 </option>
-                                </select>
+                            <div class="form-group pt-3">
+                                <label for="venue">Venue</label>
+                                <div class="input-field" [class.error]="
+                    courseScheduleForm.controls['venue'].dirty &&
+                    courseScheduleForm.hasError('required', 'venue')
+                  ">
+                                    <select formControlName="venue" type="text" id="venue"
+                                        class="rounded-3 px-2 py-1 mt-1">
+                                        <option value="Hall 01">
+                                            Hall 01
+                                        </option>
+                                        <option value="Hall 02">
+                                            Hall 02
+                                        </option>
+                                        <option value="Hall 03">
+                                            Hall 03
+                                        </option>
+                                        <option value="Hall 04">
+                                            Hall 04
+                                        </option>
+                                        <option value="Hall 05">
+                                            Hall 05
+                                        </option>
+                                    </select>
+                                </div>
+                                <small *ngIf="
+                    courseScheduleForm.controls['venue'].dirty &&
+                    courseScheduleForm.hasError('required', 'venue')
+                  " class="text-danger">*Venue is required</small>
                             </div>
 
-                            <!-- Register Button -->
-                            <button type="submit" class="btn btn-dark w-100 rounded-3 mt-4" id="course-add-btn">Add
-                                Course Schedule</button>
+                            <!-- Course Schedule Register Button -->
+                            <button [disabled]="courseScheduleForm.invalid" (click)="scheduleRegister()" type="submit"
+                                class="btn btn-dark w-100 rounded-3 mt-5 py-3">
+                                Add Schedule
+                            </button>
                         </form>
                     </div>
                 </div>
