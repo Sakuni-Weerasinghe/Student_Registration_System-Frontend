@@ -1,32 +1,25 @@
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Two columns of equal width */
-    grid-gap: 20px; /* Adjust the gap between items */
-    margin: 5%;
-    align-items: center;
-  }
+.dashboard-card {
+  width: 300px !important;
+  height: 300px !important;
+  min-width: 300px;
+  min-height: 300px;
+  border: 2px solid rgba(47, 5, 114, 0.329);
+}
 
-  .grid-item {
-    background-color: #f7f7f7;
-    align-items: center;
-    border-radius: 2%;
-    border: 1px solid purple;
-    width: 90%; /* Ensure each item takes full width of its container */
-  }
+.dashboard-card:hover{
+  cursor: pointer;
+  border: 2px solid rgb(47, 5, 114);
+}
 
-  .grid-item:hover{
-    cursor: pointer;
-  }
+img {
+  width: 120px;
+  height: 120px;
+}
 
-  img{
-    width: 120px;
-    height: 120px;
-  }
+mat-card {
+  align-items: center;
+}
 
-  mat-card{
-    align-items: center;
-  }
-
-  mat-card-title{
-    font-weight: 500;
-  }
+mat-card-title {
+  font-weight: 500;
+}

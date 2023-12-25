@@ -1,49 +1,53 @@
-<div class="grid-container">
-  <div class="grid-item">
+<div class="row m-0 mt-5">
+  <div class="col-3 col-sm-12 col-md-6 col-lg-3 my-3 d-flex justify-content-center">
     <!-- Card 1 -->
-    <mat-card class="mat-elevation-z4" [routerLink]='["/student-registration"]'>
+    <mat-card class="dashboard-card rounded-5 shadow-sm d-flex justify-content-center align-items-center"
+      [routerLink]='["/student-registration"]'>
+      <mat-card-content>
+        <img mat-card-image src="../../../assets/student_registration_icon.svg" />
+      </mat-card-content>
       <mat-card-header class="pb-4">
         <mat-card-title>Student Registration</mat-card-title>
       </mat-card-header>
-      <mat-card-content>
-        <img mat-card-image src="../../../assets/Student Registration.jpg" />
-      </mat-card-content>
     </mat-card>
   </div>
 
-  <div class="grid-item">
+  <div class="col-3 col-sm-12 col-md-6 col-lg-3 my-3 d-flex justify-content-center">
     <!-- Card 2 -->
-    <mat-card class="mat-elevation-z4" [routerLink]='["/student-enrollment"]'>
+    <mat-card class="dashboard-card rounded-5 shadow-sm d-flex justify-content-center align-items-center"
+      [routerLink]='["/student-enrollment"]'>
+      <mat-card-content>
+        <img mat-card-image src="../../../assets/student_enrollment_icon.svg" />
+      </mat-card-content>
       <mat-card-header class="pb-4">
         <mat-card-title>Student Enrollment</mat-card-title>
       </mat-card-header>
-      <mat-card-content>
-        <img mat-card-image src="../../../assets/Student Enrollment.jpg" />
-      </mat-card-content>
     </mat-card>
   </div>
 
-  <div class="grid-item">
+  <div class="col-3 col-sm-12 col-md-6 col-lg-3 my-3 d-flex justify-content-center">
     <!-- Card 3 -->
-    <mat-card class="mat-elevation-z4" [routerLink]='["/course-registration"]'>
+    <mat-card class="dashboard-card rounded-5 shadow-sm d-flex justify-content-center align-items-center"
+      [routerLink]='["/course-registration"]'>
+      <mat-card-content>
+        <img mat-card-image src="../../../assets/course_enrollment_icon.svg" />
+      </mat-card-content>
       <mat-card-header class="pb-4">
         <mat-card-title>Course Registration</mat-card-title>
       </mat-card-header>
-      <mat-card-content>
-        <img mat-card-image src="../../../assets/Course Registration.jpg" />
-      </mat-card-content>
     </mat-card>
   </div>
 
-  <div class="grid-item">
+  <div class="col-3 col-sm-12 col-md-6 col-lg-3 my-3 d-flex justify-content-center">
     <!-- Card 4 -->
-    <mat-card class="mat-elevation-z4" [routerLink]='["/course-schedule"]'>
+    <mat-card class="dashboard-card rounded-5 shadow-sm d-flex justify-content-center align-items-center"
+      [routerLink]='["/course-schedule"]'>
+      <mat-card-content>
+        <img mat-card-image src="../../../assets/schedule_icon.svg" />
+      </mat-card-content>
       <mat-card-header class="pb-4">
         <mat-card-title>Course Schedule</mat-card-title>
       </mat-card-header>
-      <mat-card-content>
-        <img mat-card-image src="../../../assets/Course Schedule.jpg" />
-      </mat-card-content>
     </mat-card>
   </div>
 </div>

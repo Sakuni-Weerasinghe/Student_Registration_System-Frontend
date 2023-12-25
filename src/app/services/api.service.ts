@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Course } from '../Models/Course';
 import { CourseSchedule, CourseSchedule_ } from '../Models/CourseSchedule';
 import { StudentCourses, StudentCourses_ } from '../Models/StudentCourse';
+import { CommonResponse } from '../Models/CommonResponse';
 
 @Injectable({
   providedIn: 'root',
@@ -64,6 +65,10 @@ export class ApiService {
 
   getStudentCourses(id: number): Observable<StudentCourses_[]> {
     return this.http.get<StudentCourses_[]>(this.baseUrl + 'StudentCourses/Courses/' + id)
+  }
+
+  deleteStudentCourses(studentId: number, courseId: number): Observable<CommonResponse> {
+    return this.http.delete<CommonResponse>(this.baseUrl + 'StudentCourses/' + studentId + '/' + courseId);
   }
 
 }
