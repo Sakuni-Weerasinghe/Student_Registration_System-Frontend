@@ -56,7 +56,7 @@ export class StudentRegistrationComponent {
           this.studentRegistrationForm.reset();
           this.toast.success({
             detail: 'SUCCESS',
-            summary: 'Student Registered! ',
+            summary: response.message,
             duration: 3000,
           });
         },

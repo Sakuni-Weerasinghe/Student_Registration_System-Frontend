@@ -113,8 +113,7 @@ export class StudentCourseDetailsComponent {
     this.apiService.addStudentCourses(request)
       .subscribe({
         next: (response) => {
-          console.log(response);
-          this.toast.success({ detail: "SUCCESS", summary: "Added Courses", duration: 2000 });
+          this.toast.success({ detail: "SUCCESS", summary: response.message, duration: 2000 });
           this.router.navigate(['student-enrollment']);
         },
         error: (error) => {

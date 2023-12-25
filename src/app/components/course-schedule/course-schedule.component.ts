@@ -64,7 +64,7 @@ export class CourseScheduleComponent {
           this.courseScheduleForm.reset();
           this.toast.success({
             detail: 'SUCCESS',
-            summary: "Course Schedule Registered",
+            summary: res.message,
             duration: 3000,
           });
         },

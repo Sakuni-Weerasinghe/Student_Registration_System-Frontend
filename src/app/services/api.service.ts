@@ -19,8 +19,8 @@ export class ApiService {
     return this.http.post<any>(this.baseUrl + "Admin/authenticate", loginObj);
   }
 
-  registerStudent(registerStudentRequest: Student): Observable<Student> {
-    return this.http.post<Student>(
+  registerStudent(registerStudentRequest: Student): Observable<CommonResponse> {
+    return this.http.post<CommonResponse>(
       this.baseUrl + 'Student/register-student',
       registerStudentRequest
     );
@@ -35,18 +35,18 @@ export class ApiService {
   }
 
   deleteStudent(id: number): Observable<CommonResponse> {
-    return this.http.delete<CommonResponse>(this.baseUrl + 'Student/delete/' + id );
+    return this.http.delete<CommonResponse>(this.baseUrl + 'Student/delete/' + id);
   }
 
-  addCourse(courseRegisterRequest: Course): Observable<Course> {
-    return this.http.post<Course>(
+  addCourse(courseRegisterRequest: Course): Observable<CommonResponse> {
+    return this.http.post<CommonResponse>(
       this.baseUrl + 'Course/add-course',
       courseRegisterRequest
     );
   }
 
-  addCourseSchedule(courseScheduleRequest: CourseSchedule): Observable<CourseSchedule> {
-    return this.http.post<CourseSchedule>(
+  addCourseSchedule(courseScheduleRequest: CourseSchedule): Observable<CommonResponse> {
+    return this.http.post<CommonResponse>(
       this.baseUrl + 'CourseSchedule/add-course-schedule',
       courseScheduleRequest
     );
@@ -62,8 +62,8 @@ export class ApiService {
 
 
 
-  addStudentCourses(studentCourseRequest: StudentCourses[]): Observable<any> {
-    return this.http.post<any>(
+  addStudentCourses(studentCourseRequest: StudentCourses[]): Observable<CommonResponse> {
+    return this.http.post<CommonResponse>(
       this.baseUrl + 'StudentCourses/add-student-courses',
       studentCourseRequest
     );
