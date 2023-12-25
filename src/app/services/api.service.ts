@@ -34,6 +34,10 @@ export class ApiService {
     return this.http.get<Student>(this.baseUrl + 'Student/' + id);
   }
 
+  deleteStudent(id: number): Observable<CommonResponse> {
+    return this.http.delete<CommonResponse>(this.baseUrl + 'Student/delete/' + id );
+  }
+
   addCourse(courseRegisterRequest: Course): Observable<Course> {
     return this.http.post<Course>(
       this.baseUrl + 'Course/add-course',
@@ -55,6 +59,8 @@ export class ApiService {
   getAllCourses(): Observable<Course[]> {
     return this.http.get<Course[]>(this.baseUrl + 'Course');
   }
+
+
 
   addStudentCourses(studentCourseRequest: StudentCourses[]): Observable<any> {
     return this.http.post<any>(

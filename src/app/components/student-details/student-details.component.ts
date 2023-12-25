@@ -82,12 +82,16 @@ export class StudentDetailsComponent {
   unenrollCourses(studentId: number, courseId: number) {
     this.apiService.deleteStudentCourses(studentId, courseId).subscribe({
       next: (response) => {
-        console.log(response.message);
+        this.toast.success({
+          detail: 'SUCCESS',
+          summary: response.message,
+          duration: 3000,
+        });
         const newCourseList = this.studentCourses.filter(item => item.courseId !== courseId)
         this.studentCourses = newCourseList;
       },
       error: (error) => {
-        console.log('error');
+        console.log(error.message);
       },
     });
   }
