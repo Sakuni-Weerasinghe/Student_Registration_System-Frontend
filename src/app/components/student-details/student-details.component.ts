@@ -15,7 +15,7 @@ import { StudentCourses_ } from '../../Models/StudentCourse';
   imports: [MatIconModule, CommonModule],
   templateUrl: './student-details.component.html',
   styleUrl: './student-details.component.css',
-  providers: [HttpClient]
+  providers: [HttpClient],
 })
 export class StudentDetailsComponent {
   studentCourses: StudentCourses_[] = [];
@@ -36,20 +36,21 @@ export class StudentDetailsComponent {
 
   courseDetails: Course = {
     courseId: 0,
-    courseName: "",
-    courseCode: "",
+    courseName: '',
+    courseCode: '',
     credits: 0,
-    lecturer: "",
+    lecturer: '',
     registerDate: new Date(),
     selected: false,
-    courseSchedules: []
-  }
+    courseSchedules: [],
+  };
 
   constructor(
     private route: ActivatedRoute,
     private apiService: ApiService,
     private toast: NgToastService,
-    private router: Router) { }
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -72,14 +73,22 @@ export class StudentDetailsComponent {
             error: (error) => {
               console.error('Error fetching student courses', error);
             },
-          })
+          });
         }
       },
     });
-
   }
 
-  deleteCourse() {
-
+  unenrollCourses(studentId: number, courseId: number) {
+    this.apiService.deleteStudentCourses(studentId, courseId).subscribe({
+      next: (response) => {
+        console.log(response.message);
+        const newCourseList = this.studentCourses.filter(item => item.courseId !== courseId)
+        this.studentCourses = newCourseList;
+      },
+      error: (error) => {
+        console.log('error');
+      },
+    });
   }
 }

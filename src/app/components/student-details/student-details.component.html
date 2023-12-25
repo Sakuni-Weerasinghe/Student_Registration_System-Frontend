@@ -46,14 +46,23 @@
                     <th></th>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let course of studentCourses">
-                        <td>{{course.courses.courseCode}}</td>
-                        <td>{{course.courses.courseName}}</td>
-                        <td>{{course.courses.credits}}</td>
-                        <td>{{course.courses.lecturer}}</td>
-                        <th><mat-icon aria-hidden="false" aria-label="delete icon" fontIcon="delete"
-                                color="warn" (click)="deleteCourse()"></mat-icon></th>
-                    </tr>
+                    <ng-container *ngIf="studentCourses.length > 0">
+                        <tr *ngFor="let course of studentCourses">
+                            <td>{{course.courses.courseCode}}</td>
+                            <td>{{course.courses.courseName}}</td>
+                            <td>{{course.courses.credits}}</td>
+                            <td>{{course.courses.lecturer}}</td>
+                            <th><button class="btn btn-sm btn-danger w-80 rounded-3 " id="enroll-btn"
+                                    (click)="unenrollCourses(studentDetails.studentId, course.courses.courseId)">Unenroll</button>
+                            </th>
+                        </tr>
+                    </ng-container>
+                    <ng-container *ngIf="studentCourses.length <= 0">
+                        <tr>
+                            <td class="border-0">No Data to display</td>
+                        </tr>
+                    </ng-container>
+
                 </tbody>
             </table>
 
