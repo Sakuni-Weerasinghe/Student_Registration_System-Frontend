@@ -45,6 +45,10 @@ export class ApiService {
     );
   }
 
+  deleteCourse(id: number): Observable<CommonResponse> {
+    return this.http.delete<CommonResponse>(this.baseUrl + 'Course/delete/' + id);
+  }
+
   addCourseSchedule(courseScheduleRequest: CourseSchedule): Observable<CommonResponse> {
     return this.http.post<CommonResponse>(
       this.baseUrl + 'CourseSchedule/add-course-schedule',

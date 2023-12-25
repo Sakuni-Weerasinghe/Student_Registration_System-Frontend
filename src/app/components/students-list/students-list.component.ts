@@ -23,7 +23,7 @@ export class StudentsListComponent {
   constructor(
     private apiService: ApiService,
     private dialog: MatDialog,
-    private toast: NgToastService,) { }
+    private toast: NgToastService) { }
 
   ngOnInit(): void {
 
