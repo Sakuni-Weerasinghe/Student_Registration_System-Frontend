@@ -19,6 +19,7 @@ import { NgToastService, NgToastModule } from 'ng-angular-popup';
 })
 export class StudentsListComponent {
   students: Student[] = [];
+  student!: Student;
 
   constructor(
     private apiService: ApiService,
@@ -35,7 +36,7 @@ export class StudentsListComponent {
         },
         error: (error) => {
         }
-      });
+      });     
   }
 
   onClick(studentRegistrationNumber: string, studentId: number) {

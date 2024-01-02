@@ -13,6 +13,8 @@ import { CourseListComponent } from './components/course-list/course-list.compon
 import { loginGuard } from './guards/login.guard';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { StudentDetailsComponent } from './components/student-details/student-details.component';
+import { StudentUpdateComponent } from './components/student-update/student-update.component';
+import { CourseUpdateComponent } from './components/course-update/course-update.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [loginGuard] },
@@ -25,6 +27,8 @@ export const routes: Routes = [
   { path: 'student', component: StudentsListComponent, canActivate: [authGuard] },
   { path: 'course', component: CourseListComponent, canActivate: [authGuard] },
   { path: 'student/details/:id', component: StudentDetailsComponent, canActivate: [authGuard] },
+  { path: 'student/update/:id', component: StudentUpdateComponent, canActivate: [authGuard] },
+  { path: 'course/update/:id', component: CourseUpdateComponent, canActivate: [authGuard] },
 
   { path: '', component: HomeComponent, pathMatch: "full", canActivate: [loginGuard] },
 

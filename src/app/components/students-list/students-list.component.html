@@ -7,6 +7,7 @@
             <th>Email Address</th>
             <th></th>
             <th></th>
+            <th></th>
         </thead>
         <tbody>
             <tr *ngFor="let student of students">
@@ -14,7 +15,13 @@
                 <td>{{student.firstName + " " + student.lastName}}</td>
                 <td>{{student.email}}</td>
                 <td><button class="btn btn-sm btn-primary w-80 rounded-3 detail-btn"
-                        [routerLink]="['/student/details',student.studentId]">Student Details</button></td>
+                        [routerLink]="['/student/details',student.studentId]">Student Details</button>
+                </td>
+
+                <td><mat-icon aria-hidden="false" aria-label="edit icon" fontIcon="edit" color="primary"
+                    [routerLink]="['/student/update',student.studentId]"></mat-icon>
+                </td>
+
                 <td><mat-icon aria-hidden="false" aria-label="delete icon" fontIcon="delete" color="warn"
                         (click)="onClick(student.studentRegistrationNumber, student.studentId)"></mat-icon>
                 </td>

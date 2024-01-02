@@ -1,10 +1,15 @@
 <div class="container my-5">
     <h4 class="text-center pb-5"><strong>{{studentDetails.firstName + " " + studentDetails.lastName}}</strong></h4>
     <div>
-        <h5 class="text-left pb-4"><strong>Personal Details</strong> <mat-icon class="px-5" aria-hidden="false"
-                aria-label="delete icon" fontIcon="edit" color="primary"></mat-icon></h5>
+        <h5 class="text-left pb-4">
+            <strong>Personal Details</strong>
+        </h5>
         <div class="pb-5">
             <table class="table mx-5">
+                <tr>
+                    <th>Registration Number</th>
+                    <td>{{studentDetails.studentRegistrationNumber}}</td>
+                </tr>
                 <tr>
                     <th>Student Full Name</th>
                     <td>{{studentDetails.firstName + " " + studentDetails.lastName}}</td>

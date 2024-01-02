@@ -2,17 +2,18 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
-import { NgToastService } from 'ng-angular-popup';
+import { NgToastService, NgToastModule } from 'ng-angular-popup';
 import { Student } from '../../Models/Student';
 import { HttpClient } from '@angular/common/http';
 import { Course } from '../../Models/Course';
 import { MatIconModule } from '@angular/material/icon';
 import { StudentCourses_ } from '../../Models/StudentCourse';
 
+
 @Component({
   selector: 'app-student-details',
   standalone: true,
-  imports: [MatIconModule, CommonModule],
+  imports: [MatIconModule, CommonModule, NgToastModule],
   templateUrl: './student-details.component.html',
   styleUrl: './student-details.component.css',
   providers: [HttpClient],
@@ -49,7 +50,6 @@ export class StudentDetailsComponent {
     private route: ActivatedRoute,
     private apiService: ApiService,
     private toast: NgToastService,
-    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -95,4 +95,5 @@ export class StudentDetailsComponent {
       },
     });
   }
+
 }

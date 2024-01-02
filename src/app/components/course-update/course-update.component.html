@@ -1,0 +1,257 @@
+<div class="outer pt-5 pb-5">
+    <div class="container">
+        <div class="row">
+            <div class="offset-md-2 col-lg-7 col-md-7 offset-lg-3 offset-md-3">
+                <div class="panel border rounded-3 shadow px-5 pb-4">
+                    <div class="panel-heading">
+                        <div class="form-title text-center p-4">
+                            <h5 class="text-center pb-3">
+                                <strong>Update Course Details</strong>
+                            </h5>
+                            <img class="" src="../../../assets/course_enrollment_icon.svg" alt="" width="100px"
+                                height="100px" />
+                        </div>
+                    </div>
+                    <div class="panel-body pb-3">
+                        <form [formGroup]="courseUpdateForm">
+                            <!-- Course Cde -->
+                            <div class="form-group pt-3">
+                                <label for="courseCode">Course Code</label>
+                                <div class="input-field" [class.error]="
+                    courseUpdateForm.controls['courseCode'].dirty &&
+                    courseUpdateForm.hasError('required', 'courseCode')
+                  ">
+                                    <input formControlName="courseCode" type="text" id="courseCode"
+                                        class="rounded-3 px-2 py-1 mt-1" />
+                                </div>
+                                <small *ngIf="
+                    courseUpdateForm.controls['courseCode'].dirty &&
+                    courseUpdateForm.hasError('required', 'courseCode')
+                  " class="text-danger">*Course Code is required</small>
+                            </div>
+
+                            <!-- Course -->
+                            <div class="form-group pt-3">
+                                <label for="courseName">Course Name</label>
+                                <div class="input-field" [class.error]="
+                    courseUpdateForm.controls['courseName'].dirty &&
+                    courseUpdateForm.hasError('required', 'courseName')
+                  ">
+                                    <input formControlName="courseName" type="text" id="courseName"
+                                        class="rounded-3 px-2 py-1 mt-1" />
+                                </div>
+                                <small *ngIf="
+                    courseUpdateForm.controls['courseName'].dirty &&
+                    courseUpdateForm.hasError('required', 'courseName')
+                  " class="text-danger">*Course Name is required</small>
+                            </div>
+
+                            <!-- Created Date -->
+                            <!-- <div class="form-group pt-3">
+                                <label for="registerDate">Created Date</label>
+                                <div class="input-field">
+                                    <input formControlName="registerDate" type="date" id="registerDate"
+                                        class="rounded-3 px-2 py-1 mt-1" readonly />
+                                </div>
+                            </div> -->
+
+                            <!-- Credits -->
+                            <div class="form-group pt-3">
+                                <label for="credits">Credits</label>
+                                <div class="input-field" [class.error]="
+                    courseUpdateForm.controls['credits'].dirty &&
+                    courseUpdateForm.hasError('required', 'credits')
+                  ">
+                                    <input formControlName="credits" type="number" id="credits"
+                                        class="rounded-3 px-2 py-1 mt-1" />
+                                </div>
+                                <small *ngIf="
+                    courseUpdateForm.controls['credits'].dirty &&
+                    courseUpdateForm.hasError('required', 'credits')
+                  " class="text-danger">*Number of credits is required</small>
+                            </div>
+
+                            <!-- Lecturer -->
+                            <div class="form-group pt-3">
+                                <label for="lecturer">Lecturer Name</label>
+                                <div class="input-field" [class.error]="
+                    courseUpdateForm.controls['lecturer'].dirty &&
+                    courseUpdateForm.hasError('required', 'lecturer')
+                  ">
+                                    <select formControlName="lecturer" type="text" id="lecturer"
+                                        class="rounded-3 px-2 py-1 mt-1">
+                                        <option value="Dr. R.N Nawarathna">
+                                            Dr. R.N Nawarathna
+                                        </option>
+                                        <option value="Prof. P.H Karunarathna">
+                                            Prof. P.H Karunarathna
+                                        </option>
+                                        <option value="Prof. S.K Kodithuwakku">
+                                            Prof. S.K Kodithuwakku
+                                        </option>
+                                        <option value="Prof. S.W.L Piris">Prof. S.W.L Piris</option>
+                                        <option value="Prof. A.J Weerasinghe">
+                                            Prof. A.J Weerasinghe
+                                        </option>
+                                        <option value="Dr. S.H.W Kumara">Dr. S.H.W Kumara</option>
+                                        <option value="Dr. O.H Dayarathna">
+                                            Dr. O.H Dayarathna
+                                        </option>
+                                        <option value="Dr. R.S Perera">Dr. R.S Perera</option>
+                                        <option value="Dr. A.V.H Basnayake">
+                                            Dr. A.V.H Basnayake
+                                        </option>
+                                        <option value="Prof. K.L.F Gunarathna">
+                                            Prof. K.L.F Gunarathna
+                                        </option>
+                                        <option value="Dr. O.L.P Dissanayake">
+                                            Dr. O.L.P Dissanayake
+                                        </option>
+                                    </select>
+                                </div>
+                                <small *ngIf="
+                    courseUpdateForm.controls['lecturer'].dirty &&
+                    courseUpdateForm.hasError('required', 'lecturer')
+                  " class="text-danger">*Lecturer Name is required</small>
+                            </div>
+                            <h6 class="pt-5 text-center">Course Schedules</h6>
+                            <!-- <table *ngIf="
+                  courseUpdateRequest.courseSchedules &&
+                  courseUpdateRequest.courseSchedules.length > 0
+                ">
+                                <tbody>
+                                    <tr *ngFor="let schedule of courseUpdateRequest.courseSchedules">
+                                        <td class="px-3">{{ schedule.date }}</td>
+                                        <td class="px-5">{{ schedule.time }}</td>
+                                        <td class="px-4">{{ schedule.venue }}</td>
+                                        <td>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table> -->
+                            <div class="row">
+                                <ng-container
+                                    *ngFor="let schedule of courseUpdateRequest.courseSchedules; let i = index">
+
+                                    <!-- Date -->
+                                    <div class="col-lg-3">
+                                        <div class="form-group pt-3">
+                                            <div class="input-field">
+                                                <select formControlName="date{{ i }}" type="date" id="date{{ i }}"
+                                                    class="rounded-3 px-2 py-1 mt-1">
+                                                    class="rounded-3 px-2 py-1 mt-1">
+                                                    <option value="Monday">Monday</option>
+                                                    <option value="Tuesday">Tuesday</option>
+                                                    <option value="Wednesday">Wednesday</option>
+                                                    <option value="Thursday">Thursday</option>
+                                                    <option value="Friday">Friday</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <small *ngIf="
+                                                courseUpdateForm.controls['date' + i].dirty &&
+                                                courseUpdateForm.hasError('required', 'date' + i)
+                                            " class="text-danger">*Date is required</small>
+                                    </div>
+
+                                    <!-- Time -->
+                                    <div class="col-lg-5">
+                                        <div class="form-group pt-3">
+                                            <div class="input-field">
+                                                <select formControlName="time{{ i }}" type="text" id="time{{ i }}"
+                                                    class="rounded-3 px-2 py-1 mt-1">
+                                                    <option value="8.00 a.m - 9.00 a.m">
+                                                        8.00 a.m - 9.00 a.m
+                                                    </option>
+                                                    <option value="9.00 a.m - 10.00 a.m">
+                                                        9.00 a.m - 10.00 a.m
+                                                    </option>
+                                                    <option value="10.00 a.m - 11.00 a.m">
+                                                        10.00 a.m - 11.00 a.m
+                                                    </option>
+                                                    <option value="11.00 a.m - 12.00 p.m">
+                                                        11.00 a.m - 12.00 p.m
+                                                    </option>
+                                                    <option value="1.00 p.m - 2.00 p.m">
+                                                        1.00 p.m - 2.00 p.m
+                                                    </option>
+                                                    <option value="2.00 p.m - 3.00 p.m">
+                                                        2.00 p.m - 3.00 p.m
+                                                    </option>
+                                                    <option value="3.00 p.m - 4.00 p.m">
+                                                        3.00 p.m - 4.00 p.m
+                                                    </option>
+                                                    <option value="4.00 p.m - 5.00 p.m">
+                                                        4.00 p.m - 5.00 p.m
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <small *ngIf="
+                                                courseUpdateForm.controls['time' + i].dirty &&
+                                                courseUpdateForm.hasError('required', 'time' + i)
+                                            " class="text-danger">*Time is required</small>
+                                        </div>
+                                    </div>
+
+                                    <!-- Venue -->
+                                    <div class="col-lg-3">
+                                        <div class="form-group pt-3">
+                                            <div class="input-field">
+                                                <select formControlName="venue{{ i }}" type="text" id="venue{{ i }}"
+                                                    class="rounded-3 px-2 py-1 mt-1">
+                                                    <option value="Hall 01">
+                                                        Hall 01
+                                                    </option>
+                                                    <option value="Hall 02">
+                                                        Hall 02
+                                                    </option>
+                                                    <option value="Hall 03">
+                                                        Hall 03
+                                                    </option>
+                                                    <option value="Hall 04">
+                                                        Hall 04
+                                                    </option>
+                                                    <option value="Hall 05">
+                                                        Hall 05
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <small *ngIf="
+                                                courseUpdateForm.controls['venue' + i].dirty &&
+                                                courseUpdateForm.hasError('required', 'venue' + i)
+                                            " class="text-danger">*Venue is required</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-1 pt-4">
+                                        <mat-icon aria-hidden="false" aria-label="delete icon" fontIcon="delete"
+                                            color="warn" class="px-1"
+                                            (click)="deleteSchedule(schedule.courseScheduleId)"></mat-icon>
+                                    </div>
+                                </ng-container>
+                            </div>
+                            <p *ngIf="
+                  !courseUpdateRequest.courseSchedules ||
+                  courseUpdateRequest.courseSchedules.length <= 0
+                ">
+                                Schedule Not Added!
+                            </p>
+
+
+                            <!-- Update Button -->
+                            <div class="text-center pt-4">
+                                <button [disabled]="courseUpdateForm.invalid" (click)="onUpdate()" type="submit"
+                                    class="btn btn-warning w-40 rounded-3 mt-4 py-1 mx-4">
+                                    Update
+                                </button>
+                                <button class="btn btn-primary w-40 rounded-3 mt-4 py-1" [routerLink]="['/course']">
+                                    Cancel
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

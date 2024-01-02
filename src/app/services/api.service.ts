@@ -34,9 +34,15 @@ export class ApiService {
     return this.http.get<Student>(this.baseUrl + 'Student/' + id);
   }
 
+  updateStudent(id: number, updateStudentRequest: Student): Observable<CommonResponse> {
+    return this.http.put<CommonResponse>(this.baseUrl + 'Student/update/' + id, updateStudentRequest);
+  }
+
   deleteStudent(id: number): Observable<CommonResponse> {
     return this.http.delete<CommonResponse>(this.baseUrl + 'Student/delete/' + id);
   }
+
+
 
   addCourse(courseRegisterRequest: Course): Observable<CommonResponse> {
     return this.http.post<CommonResponse>(
@@ -45,9 +51,23 @@ export class ApiService {
     );
   }
 
+  getAllCourses(): Observable<Course[]> {
+    return this.http.get<Course[]>(this.baseUrl + 'Course');
+  }
+
+  getCourse(id: number): Observable<Course> {
+    return this.http.get<Course>(this.baseUrl + 'Course/' + id);
+  }
+
+  updateCourses(id: number, updateCourseRequest: Course): Observable<CommonResponse> {
+    return this.http.put<CommonResponse>(this.baseUrl + 'Course/update/' + id, updateCourseRequest);
+  }
+
   deleteCourse(id: number): Observable<CommonResponse> {
     return this.http.delete<CommonResponse>(this.baseUrl + 'Course/delete/' + id);
   }
+
+
 
   addCourseSchedule(courseScheduleRequest: CourseSchedule): Observable<CommonResponse> {
     return this.http.post<CommonResponse>(
@@ -60,9 +80,14 @@ export class ApiService {
     return this.http.get<CourseSchedule_>(this.baseUrl + 'CourseSchedule/' + id)
   }
 
-  getAllCourses(): Observable<Course[]> {
-    return this.http.get<Course[]>(this.baseUrl + 'Course');
+  deleteCourseSchedule(id: number): Observable<CommonResponse> {
+    return this.http.delete<CommonResponse>(this.baseUrl + 'CourseSchedule/delete/' + id);
   }
+
+  updateCourseSchedule(id: number, updateCourseScheduleRequest: Course): Observable<CommonResponse> {
+    return this.http.put<CommonResponse>(this.baseUrl + 'CourseSchedule/update/' + id, updateCourseScheduleRequest);
+  }
+
 
 
 

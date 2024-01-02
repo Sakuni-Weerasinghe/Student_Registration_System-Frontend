@@ -1,0 +1,155 @@
+<div class="outer pt-5 pb-5">
+    <div class="container">
+        <div class="row">
+            <div class="offset-md-2 col-lg-7 col-md-7 offset-lg-3 offset-md-3">
+                <div class="panel border rounded-3 shadow px-5 pb-4">
+                    <div class="panel-heading">
+                        <div class="form-title text-center p-4">
+                            <h5 class="text-center pb-3"><strong>Update Student Details</strong></h5>
+                            <img class="" src="../../../assets/student_registration_icon.svg" alt="" width="100px"
+                                height="100px">
+                        </div>
+                    </div>
+                    <div class="panel-body pb-3">
+                        <form [formGroup]="studentRegistrationForm">
+                            <!-- Registration Number -->
+                            <div class="form-group mb-3">
+                                <label for="studentRegistrationNumber">Registration Number</label>
+                                <div class="input-field">
+                                    <input formControlName="studentRegistrationNumber" type="text"
+                                        class="rounded-3 px-2 py-1 mt-1" id="studentRegistrationNumber" readonly>
+                                </div>
+                            </div>
+
+                            <!-- First Name -->
+                            <div class="form-group mb-3">
+                                <label for="firstName">First Name</label>
+                                <div class="input-field" [class.error]="
+                                studentRegistrationForm.controls['firstName'].dirty &&
+                                studentRegistrationForm.hasError('required', 'firstName')">
+                                    <input formControlName="firstName" type="text" class="rounded-3 px-2 py-1 mt-1"
+                                        id="firstname">
+                                </div>
+                                <small *ngIf="
+                                              studentRegistrationForm.controls['firstName'].dirty &&
+                                              studentRegistrationForm.hasError('required', 'firstName')
+                                            " class="text-danger">*Firstname is required
+                                </small>
+                            </div>
+
+                            <!-- Last Name -->
+                            <div class="form-group mb-3">
+                                <label for="lastName">Last Name</label>
+                                <div class="input-field" [class.error]="
+                                studentRegistrationForm.controls['lastName'].dirty &&
+                                studentRegistrationForm.hasError('required', 'lastName')">
+                                    <input formControlName="lastName" type="text" class="rounded-3 px-2 py-1 mt-1"
+                                        id="lastName">
+                                </div>
+                                <small *ngIf="
+                                              studentRegistrationForm.controls['lastName'].dirty &&
+                                              studentRegistrationForm.hasError('required', 'lastName')
+                                            " class="text-danger">*Lastname is required
+                                </small>
+                            </div>
+
+                            <!-- Birthday -->
+                            <div class="form-group mb-3">
+                                <label for="birthday">Birthday</label>
+                                <div class="input-field" [class.error]="
+                                studentRegistrationForm.controls['birthday'].dirty &&
+                                studentRegistrationForm.hasError('required', 'birthday')">
+                                    <input formControlName="birthday" type="date" class="rounded-3 px-2 py-1 mt-1"
+                                        id="birthday">
+                                </div>
+                                <small *ngIf="
+                                              studentRegistrationForm.controls['birthday'].dirty &&
+                                              studentRegistrationForm.hasError('required', 'birthday')
+                                            " class="text-danger">*Birthday is required
+                                </small>
+                            </div>
+
+                            <!-- Gender -->
+                            <div class="form-group mb-3">
+                                <label for="gender">Gender</label>
+                                <div class="input-field">
+                                    <input formControlName="gender" type="text" class="rounded-3 px-2 py-1 mt-1"
+                                        id="gender" readonly>
+                                </div>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="form-group mb-3">
+                                <label for="email">Email</label>
+                                <div class="input-field">
+                                    <input formControlName="email" type="email" class="rounded-3 px-2 py-1 mt-1"
+                                        id="email" readonly>
+                                </div>
+                            </div>
+
+                            <!-- Phone Number -->
+                            <div class="form-group mb-3">
+                                <label for="phone">Phone Number</label>
+                                <div class="input-field" [class.error]="
+                                studentRegistrationForm.controls['phone'].dirty &&
+                                studentRegistrationForm.hasError('required', 'phone')">
+                                    <input formControlName="phone" type="text" class="rounded-3 px-2 py-1 mt-1"
+                                        id="phone">
+                                </div>
+                                <small *ngIf="
+                                              studentRegistrationForm.controls['phone'].dirty &&
+                                              studentRegistrationForm.hasError('required', 'phone')
+                                            " class="text-danger">*Phone number is required
+                                </small>
+
+                                <small *ngIf="studentRegistrationForm.controls['phone'].dirty &&
+                                            studentRegistrationForm.hasError('pattern','phone')"
+                                    class="text-danger">*Please, Enter valid Phone Number
+                                </small>
+                            </div>
+
+                            <!-- Address -->
+                            <div class="form-group mb-3">
+                                <label for="address">Address</label>
+                                <div class="input-field" [class.error]="
+                                studentRegistrationForm.controls['addressLine1'].dirty &&
+                                studentRegistrationForm.hasError('required', 'addressLine1')">
+                                    <input formControlName="addressLine1" type="text" class="rounded-3 px-2 py-1 mt-1"
+                                        id="addressline1" placeholder="Address Line 1">
+                                </div>
+
+                                <div class="input-field" [class.error]="
+                                studentRegistrationForm.controls['addressLine2'].dirty &&
+                                studentRegistrationForm.hasError('required', 'addressLine2')">
+                                    <input formControlName="addressLine2" type="text" class="rounded-3 px-2 py-1 mt-1"
+                                        id="addressline2" placeholder="Address Line 2">
+                                </div>
+
+                                <div class="input-field">
+                                    <input formControlName="addressLine3" type="text" class="rounded-3 px-2 py-1 mt-1"
+                                        id="addressline3" placeholder="Address Line 3">
+                                </div>
+
+                                <small *ngIf="
+                                   ( studentRegistrationForm.controls['addressLine1'].dirty &&
+                                    studentRegistrationForm.hasError('required', 'addressLine1')) ||
+                                   ( studentRegistrationForm.controls['addressLine2'].dirty &&
+                                    studentRegistrationForm.hasError('required', 'addressLine2'))
+                                  " class="text-danger">*Address is required
+                                </small>
+                            </div>
+
+                            <!-- Update Button -->
+                            <div class="text-center">
+                                <button [disabled]="studentRegistrationForm.invalid" (click)="onUpdate()" type="submit"
+                                    class="btn btn-warning w-40 rounded-3 mt-4 py-1 mx-4">Update</button>
+                                <button class="btn btn-primary w-40 rounded-3 mt-4 py-1"
+                                    [routerLink]="['/student']">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
