@@ -8,6 +8,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { StudentDeleteDialogComponent } from '../dialog/student-delete-dialog/student-delete-dialog.component';
 import { NgToastService, NgToastModule } from 'ng-angular-popup';
+import { CourseStudentListDialogComponent } from '../dialog/course-student-list-dialog/course-student-list-dialog.component';
+import { StudentCourses_ } from '../../Models/StudentCourse';
 
 @Component({
   selector: 'app-course-list',
@@ -19,6 +21,7 @@ import { NgToastService, NgToastModule } from 'ng-angular-popup';
 })
 export class CourseListComponent {
   courses: Course[] = [];
+  studentList: StudentCourses_[] = [];
 
   constructor(
     private apiService: ApiService,
@@ -50,6 +53,22 @@ export class CourseListComponent {
         this.deleteStudent(studentId);
       }
     });
+  }
+
+  onView(courseId: number) {
+    this.apiService.getCourseStudentList(courseId).subscribe(
+      (data: StudentCourses_[]) => {
+        this.studentList = data;
+
+        const dialogRef = this.dialog.open(CourseStudentListDialogComponent, {
+          data: { studentList: this.studentList },
+          position: { top: '6%' },
+        });
+      },
+      (error) => {
+        console.error('Error fetching student list', error);
+      }
+    );
   }
 
   deleteStudent(courseId: number) {

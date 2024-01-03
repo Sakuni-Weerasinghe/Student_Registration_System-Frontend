@@ -1,0 +1,17 @@
+<div mat-dialog-content>
+    <h4 class="py-4">Student List</h4>
+
+    <table class="table" *ngIf="studentList && studentList.length > 0">
+        <tbody>
+            <tr *ngFor="let student of studentList">
+                <td>{{student.student.studentRegistrationNumber}}</td>
+                <td>{{student.student.firstName + " " + student.student.lastName}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <p *ngIf="!studentList || studentList.length <= 0 ">No Student Enrolled</p>
+
+</div>
+<div mat-dialog-actions class="text-center">
+    <button mat-button mat-dialog-close>Ok</button>
+</div>
