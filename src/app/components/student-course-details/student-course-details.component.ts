@@ -67,7 +67,18 @@ export class StudentCourseDetailsComponent {
 
     this.apiService.getAllCourses().subscribe({
       next: (response) => {
-        this.initialCourseList = response;
+        this.initialCourseList = response.sort((a, b) => {
+          const courseCodeA = a.courseCode;
+          const courseCodeB = b.courseCode;
+
+          if (courseCodeA < courseCodeB) {
+            return -1;
+          } else if (courseCodeA > courseCodeB) {
+            return 1;
+          } else {
+            return 0; // Registration numbers are equal
+          }
+        });
       },
       error: (error) => {
         console.log(error);

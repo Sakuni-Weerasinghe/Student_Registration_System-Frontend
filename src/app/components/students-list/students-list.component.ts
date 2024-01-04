@@ -31,12 +31,22 @@ export class StudentsListComponent {
     this.apiService.getAllStudents()
       .subscribe({
         next: (response) => {
-          //console.log(students);
-          this.students = response;
+          this.students = response.sort((a, b) => {
+            const registrationNumberA = a.studentRegistrationNumber;
+            const registrationNumberB = b.studentRegistrationNumber;
+
+            if (registrationNumberA < registrationNumberB) {
+              return -1;
+            } else if (registrationNumberA > registrationNumberB) {
+              return 1;
+            } else {
+              return 0; // Registration numbers are equal
+            }
+          });
         },
         error: (error) => {
         }
-      });     
+      });
   }
 
   onClick(studentRegistrationNumber: string, studentId: number) {

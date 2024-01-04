@@ -11,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
   imports: [CommonModule, RouterModule],
   templateUrl: './student-enrollment.component.html',
   styleUrl: './student-enrollment.component.css',
-  providers: [ApiService,HttpClient]
+  providers: [ApiService, HttpClient]
 })
 export class StudentEnrollmentComponent {
   students: Student[] = [];
@@ -24,8 +24,18 @@ export class StudentEnrollmentComponent {
     this.apiService.getAllStudents()
       .subscribe({
         next: (response) => {
-          //console.log(students);
-          this.students = response;
+          this.students = response.sort((a, b) => {
+            const registrationNumberA = a.studentRegistrationNumber;
+            const registrationNumberB = b.studentRegistrationNumber;
+
+            if (registrationNumberA < registrationNumberB) {
+              return -1;
+            } else if (registrationNumberA > registrationNumberB) {
+              return 1;
+            } else {
+              return 0; // Registration numbers are equal
+            }
+          });
         },
         error: (error) => {
         }

@@ -49,7 +49,7 @@ export class CourseRegistrationComponent {
           this.toast.success({
             detail: 'SUCCESS',
             summary: res.message,
-            duration: 3000,
+            duration: 2000,
           });
         },
         error: (err) => {

@@ -34,8 +34,18 @@ export class CourseListComponent {
     this.apiService.getAllCourses()
       .subscribe({
         next: (response) => {
-          //console.log(students);
-          this.courses = response;
+          this.courses = response.sort((a, b) => {
+            const courseCodeA = a.courseCode;
+            const courseCodeB = b.courseCode;
+
+            if (courseCodeA < courseCodeB) {
+              return -1;
+            } else if (courseCodeA > courseCodeB) {
+              return 1;
+            } else {
+              return 0;
+            }
+          });
         },
         error: (response) => {
           console.log(response);
@@ -64,6 +74,12 @@ export class CourseListComponent {
           data: { studentList: this.studentList },
           position: { top: '6%' },
         });
+
+        dialogRef.afterClosed().subscribe((result) => {
+          if (result === 'yes') {
+            //this.deleteStudent(studentId);
+          }
+        });
       },
       (error) => {
         console.error('Error fetching student list', error);
@@ -89,4 +105,9 @@ export class CourseListComponent {
         },
       })
   }
+
+  unenrollCourse() {
+
+  }
+
 }

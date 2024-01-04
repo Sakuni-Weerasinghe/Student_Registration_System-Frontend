@@ -42,7 +42,7 @@ export class StudentRegistrationComponent {
       lastName: ['', Validators.required],
       birthday: [new Date(), Validators.required],
       gender: ['', Validators.required],
-      phone: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
+      phone: ['', [Validators.required, Validators.pattern("^[0-9]{10}$")]],
       addressLine1: ['', Validators.required],
       addressLine2: ['', Validators.required],
       addressLine3: [''],
@@ -57,7 +57,7 @@ export class StudentRegistrationComponent {
           this.toast.success({
             detail: 'SUCCESS',
             summary: response.message,
-            duration: 3000,
+            duration: 2000,
           });
         },
         error: (err) => {
@@ -73,7 +73,7 @@ export class StudentRegistrationComponent {
       this.toast.error({
         detail: 'ERROR',
         summary: 'Please fill the required fields!',
-        duration: 3000,
+        duration: 2000,
       });
     }
   }

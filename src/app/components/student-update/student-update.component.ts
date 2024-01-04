@@ -67,7 +67,7 @@ export class StudentUpdateComponent implements OnInit {
       birthday: [this.studentDetails.birthday, Validators.required],
       gender: [this.studentDetails.gender],
       email: [this.studentDetails.email],
-      phone: [this.studentDetails.phone, Validators.required],
+      phone: [this.studentDetails.phone, [Validators.required, Validators.pattern("^[0-9]{10}$")]],
       addressLine1: [this.studentDetails.addressLine1, Validators.required],
       addressLine2: [this.studentDetails.addressLine2, Validators.required],
       addressLine3: [this.studentDetails.addressLine3],

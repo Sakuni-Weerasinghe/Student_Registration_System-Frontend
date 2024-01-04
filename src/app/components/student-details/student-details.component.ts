@@ -68,7 +68,18 @@ export class StudentDetailsComponent {
 
           this.apiService.getStudentCourses(id).subscribe({
             next: (response) => {
-              this.studentCourses = response;
+              this.studentCourses = response.sort((a, b) => {
+                const courseCodeA = a.courses.courseCode;
+                const courseCodeB = b.courses.courseCode;
+
+                if (courseCodeA < courseCodeB) {
+                  return -1;
+                } else if (courseCodeA > courseCodeB) {
+                  return 1;
+                } else {
+                  return 0; // Registration numbers are equal
+                }
+              });
             },
             error: (error) => {
               console.error('Error fetching student courses', error);

@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
           this.toast.success({
             detail: 'SUCCESS',
             summary: res.message,
-            duration: 3000,
+            duration: 2000,
           });
           this.authService.login();
           this.router.navigate(['dashboard']);
@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit {
           this.toast.error({
             detail: 'ERROR',
             summary: err.error.message,
-            duration: 3000,
+            duration: 2000,
           });
         },
       });
@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
       this.toast.error({
         detail: 'ERROR',
         summary: 'Please fill the required fields!',
-        duration: 3000,
+        duration: 2000,
       });
     }
   }
