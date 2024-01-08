@@ -76,8 +76,19 @@ export class CourseListComponent {
         });
 
         dialogRef.afterClosed().subscribe((result) => {
-          if (result === 'yes') {
-            //this.deleteStudent(studentId);
+          if (result && result.action === 'unenroll') {
+            const selectedStudents = result.selectedStudents;
+            if (selectedStudents.length > 0) {
+              selectedStudents.forEach((student: any) => {
+                this.unenrollCourse(student.studentId, courseId)
+              });
+            } else {
+              this.toast.error({
+                detail: 'ERROR',
+                summary: "Please select student wants to unenroll",
+                duration: 3000,
+              });
+            }
           }
         });
       },
@@ -91,7 +102,6 @@ export class CourseListComponent {
     this.apiService.deleteCourse(courseId)
       .subscribe({
         next: (response) => {
-          console.log(response.message);
           this.toast.success({
             detail: 'SUCCESS',
             summary: response.message,
@@ -101,13 +111,33 @@ export class CourseListComponent {
           this.courses = newCourseList;
         },
         error: (error) => {
-          console.log(error.message);
+          this.toast.error({
+            detail: 'ERROR',
+            summary: error.error.message,
+            duration: 2000
+          })
         },
       })
   }
 
-  unenrollCourse() {
-
+  unenrollCourse(studentId: number, courseId: number) {
+    this.apiService.deleteStudentCourses(studentId, courseId)
+      .subscribe({
+        next: (response) => {
+          this.toast.success({
+            detail: 'SUCCESS',
+            summary: response.message,
+            duration: 2000,
+          });
+        },
+        error: (error) => {
+          this.toast.error({
+            detail: 'ERROR',
+            summary: error.error.message,
+            duration: 2000
+          })
+        },
+      })
   }
 
 }

@@ -11,7 +11,17 @@
                         </div>
                     </div>
                     <div class="panel-body pb-3">
-                        <form [formGroup]="studentRegistrationForm">
+                        <form [formGroup]="studentUpdateForm">
+
+                            <!-- UserName -->
+                            <div class="form-group mb-3">
+                                <label for="username">User Name</label>
+                                <div class="input-field">
+                                    <input formControlName="username" type="text" class="rounded-3 px-2 py-1 mt-1"
+                                        id="username" readonly>
+                                </div>
+                            </div>
+
                             <!-- Registration Number -->
                             <div class="form-group mb-3">
                                 <label for="studentRegistrationNumber">Registration Number</label>
@@ -25,14 +35,14 @@
                             <div class="form-group mb-3">
                                 <label for="firstName">First Name</label>
                                 <div class="input-field" [class.error]="
-                                studentRegistrationForm.controls['firstName'].dirty &&
-                                studentRegistrationForm.hasError('required', 'firstName')">
+                                studentUpdateForm.controls['firstName'].dirty &&
+                                studentUpdateForm.hasError('required', 'firstName')">
                                     <input formControlName="firstName" type="text" class="rounded-3 px-2 py-1 mt-1"
                                         id="firstname">
                                 </div>
                                 <small *ngIf="
-                                              studentRegistrationForm.controls['firstName'].dirty &&
-                                              studentRegistrationForm.hasError('required', 'firstName')
+                                              studentUpdateForm.controls['firstName'].dirty &&
+                                              studentUpdateForm.hasError('required', 'firstName')
                                             " class="text-danger">*Firstname is required
                                 </small>
                             </div>
@@ -41,14 +51,14 @@
                             <div class="form-group mb-3">
                                 <label for="lastName">Last Name</label>
                                 <div class="input-field" [class.error]="
-                                studentRegistrationForm.controls['lastName'].dirty &&
-                                studentRegistrationForm.hasError('required', 'lastName')">
+                                studentUpdateForm.controls['lastName'].dirty &&
+                                studentUpdateForm.hasError('required', 'lastName')">
                                     <input formControlName="lastName" type="text" class="rounded-3 px-2 py-1 mt-1"
                                         id="lastName">
                                 </div>
                                 <small *ngIf="
-                                              studentRegistrationForm.controls['lastName'].dirty &&
-                                              studentRegistrationForm.hasError('required', 'lastName')
+                                              studentUpdateForm.controls['lastName'].dirty &&
+                                              studentUpdateForm.hasError('required', 'lastName')
                                             " class="text-danger">*Lastname is required
                                 </small>
                             </div>
@@ -57,14 +67,14 @@
                             <div class="form-group mb-3">
                                 <label for="birthday">Birthday</label>
                                 <div class="input-field" [class.error]="
-                                studentRegistrationForm.controls['birthday'].dirty &&
-                                studentRegistrationForm.hasError('required', 'birthday')">
+                                studentUpdateForm.controls['birthday'].dirty &&
+                                studentUpdateForm.hasError('required', 'birthday')">
                                     <input formControlName="birthday" type="date" class="rounded-3 px-2 py-1 mt-1"
                                         id="birthday">
                                 </div>
                                 <small *ngIf="
-                                              studentRegistrationForm.controls['birthday'].dirty &&
-                                              studentRegistrationForm.hasError('required', 'birthday')
+                                              studentUpdateForm.controls['birthday'].dirty &&
+                                              studentUpdateForm.hasError('required', 'birthday')
                                             " class="text-danger">*Birthday is required
                                 </small>
                             </div>
@@ -91,20 +101,20 @@
                             <div class="form-group mb-3">
                                 <label for="phone">Phone Number</label>
                                 <div class="input-field" [class.error]="
-                                studentRegistrationForm.controls['phone'].dirty &&
-                                studentRegistrationForm.hasError('required', 'phone')">
+                                studentUpdateForm.controls['phone'].dirty &&
+                                studentUpdateForm.hasError('required', 'phone')">
                                     <input formControlName="phone" type="text" class="rounded-3 px-2 py-1 mt-1"
                                         id="phone">
                                 </div>
                                 <small *ngIf="
-                                              studentRegistrationForm.controls['phone'].dirty &&
-                                              studentRegistrationForm.hasError('required', 'phone')
+                                              studentUpdateForm.controls['phone'].dirty &&
+                                              studentUpdateForm.hasError('required', 'phone')
                                             " class="text-danger">*Phone number is required
                                 </small>
 
-                                <small *ngIf="studentRegistrationForm.controls['phone'].dirty &&
-                                            studentRegistrationForm.hasError('pattern','phone')"
-                                    class="text-danger">*Please, Enter valid Phone Number
+                                <small *ngIf="studentUpdateForm.controls['phone'].dirty &&
+                                            studentUpdateForm.hasError('pattern','phone')" class="text-danger">*Please,
+                                    Enter valid Phone Number
                                 </small>
                             </div>
 
@@ -112,15 +122,15 @@
                             <div class="form-group mb-3">
                                 <label for="address">Address</label>
                                 <div class="input-field" [class.error]="
-                                studentRegistrationForm.controls['addressLine1'].dirty &&
-                                studentRegistrationForm.hasError('required', 'addressLine1')">
+                                studentUpdateForm.controls['addressLine1'].dirty &&
+                                studentUpdateForm.hasError('required', 'addressLine1')">
                                     <input formControlName="addressLine1" type="text" class="rounded-3 px-2 py-1 mt-1"
                                         id="addressline1" placeholder="Address Line 1">
                                 </div>
 
                                 <div class="input-field" [class.error]="
-                                studentRegistrationForm.controls['addressLine2'].dirty &&
-                                studentRegistrationForm.hasError('required', 'addressLine2')">
+                                studentUpdateForm.controls['addressLine2'].dirty &&
+                                studentUpdateForm.hasError('required', 'addressLine2')">
                                     <input formControlName="addressLine2" type="text" class="rounded-3 px-2 py-1 mt-1"
                                         id="addressline2" placeholder="Address Line 2">
                                 </div>
@@ -131,17 +141,17 @@
                                 </div>
 
                                 <small *ngIf="
-                                   ( studentRegistrationForm.controls['addressLine1'].dirty &&
-                                    studentRegistrationForm.hasError('required', 'addressLine1')) ||
-                                   ( studentRegistrationForm.controls['addressLine2'].dirty &&
-                                    studentRegistrationForm.hasError('required', 'addressLine2'))
+                                   ( studentUpdateForm.controls['addressLine1'].dirty &&
+                                    studentUpdateForm.hasError('required', 'addressLine1')) ||
+                                   ( studentUpdateForm.controls['addressLine2'].dirty &&
+                                    studentUpdateForm.hasError('required', 'addressLine2'))
                                   " class="text-danger">*Address is required
                                 </small>
                             </div>
 
                             <!-- Update Button -->
                             <div class="text-center">
-                                <button [disabled]="studentRegistrationForm.invalid" (click)="onUpdate()" type="submit"
+                                <button [disabled]="studentUpdateForm.invalid" (click)="onUpdate()" type="submit"
                                     class="btn btn-warning w-40 rounded-3 mt-4 py-1 mx-4">Update</button>
                                 <button class="btn btn-primary w-40 rounded-3 mt-4 py-1"
                                     [routerLink]="['/student']">Cancel</button>

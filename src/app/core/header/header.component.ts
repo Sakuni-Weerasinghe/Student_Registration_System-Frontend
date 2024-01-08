@@ -64,11 +64,11 @@ export class HeaderComponent implements OnInit {
     },
   ];
 
-  
+
   private authNavItems: NavItem[] = [
     {
       label: 'Dashboard',
-      path: 'dashboard',
+      path: 'admin-dashboard',
     },
     {
       label: 'Student',

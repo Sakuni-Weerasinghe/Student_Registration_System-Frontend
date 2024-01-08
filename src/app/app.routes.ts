@@ -18,7 +18,7 @@ import { CourseUpdateComponent } from './components/course-update/course-update.
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [loginGuard] },
-  { path: 'dashboard', component: AdminDashboardComponent, canActivate: [authGuard] },
+  { path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [authGuard] },
   { path: 'student-registration', component: StudentRegistrationComponent, canActivate: [authGuard] },
   { path: 'course-registration', component: CourseRegistrationComponent, canActivate: [authGuard] },
   { path: 'student-enrollment', component: StudentEnrollmentComponent, canActivate: [authGuard] },

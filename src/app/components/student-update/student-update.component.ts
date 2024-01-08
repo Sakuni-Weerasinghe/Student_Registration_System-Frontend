@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
-import { Student } from '../../Models/Student';
+import { Student, Student_ } from '../../Models/Student';
 import { NgToastService, NgToastModule } from 'ng-angular-popup';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -16,9 +16,9 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./student-update.component.css']
 })
 export class StudentUpdateComponent implements OnInit {
-  studentRegistrationForm!: FormGroup;
+  studentUpdateForm!: FormGroup;
 
-  studentDetails: Student = {
+  studentDetails: Student_ = {
     studentId: 0,
     studentRegistrationNumber: ' ',
     firstName: ' ',
@@ -30,6 +30,8 @@ export class StudentUpdateComponent implements OnInit {
     addressLine1: ' ',
     addressLine2: ' ',
     addressLine3: ' ',
+    username: ' ',
+    password: ' '
   };
 
   constructor(
@@ -60,7 +62,8 @@ export class StudentUpdateComponent implements OnInit {
   }
 
   initForm() {
-    this.studentRegistrationForm = this.fb.group({
+    this.studentUpdateForm = this.fb.group({
+      username: [this.studentDetails.username],
       studentRegistrationNumber: [this.studentDetails.studentRegistrationNumber],
       firstName: [this.studentDetails.firstName, Validators.required],
       lastName: [this.studentDetails.lastName, Validators.required],
@@ -74,21 +77,21 @@ export class StudentUpdateComponent implements OnInit {
     });
 
     // Reset form controls to mark them as not dirty
-    Object.keys(this.studentRegistrationForm.controls).forEach(key => {
-      this.studentRegistrationForm.get(key)?.markAsPristine;
+    Object.keys(this.studentUpdateForm.controls).forEach(key => {
+      this.studentUpdateForm.get(key)?.markAsPristine;
     });
 
     // Subscribe to value changes for form validation
-    this.studentRegistrationForm.valueChanges.subscribe(() => {
-      this.validateAllFormFields(this.studentRegistrationForm);
+    this.studentUpdateForm.valueChanges.subscribe(() => {
+      this.validateAllFormFields(this.studentUpdateForm);
     });
   }
 
   onUpdate() {
-    if (this.studentRegistrationForm.valid) {
-      this.apiService.updateStudent(this.studentDetails.studentId, this.studentRegistrationForm.value).subscribe({
+    if (this.studentUpdateForm.valid) {
+      this.apiService.updateStudent(this.studentDetails.studentId, this.studentUpdateForm.value).subscribe({
         next: (response) => {
-          this.studentRegistrationForm.reset();
+          this.studentUpdateForm.reset();
           this.toast.success({
             detail: 'SUCCESS',
             summary: response.message,
@@ -105,7 +108,7 @@ export class StudentUpdateComponent implements OnInit {
         },
       })
     } else {
-      this.validateAllFormFields(this.studentRegistrationForm);
+      this.validateAllFormFields(this.studentUpdateForm);
       this.toast.error({
         detail: 'ERROR',
         summary: 'Please fill the required fields!',

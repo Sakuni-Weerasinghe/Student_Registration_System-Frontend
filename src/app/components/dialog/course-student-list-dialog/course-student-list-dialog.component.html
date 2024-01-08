@@ -6,12 +6,15 @@
             <tr *ngFor="let student of studentList">
                 <td>{{student.student.studentRegistrationNumber}}</td>
                 <td>{{student.student.firstName + " " + student.student.lastName}}</td>
+                <td><input type="checkbox" [(ngModel)]="student.student.selected"
+                        (change)="onCheckboxChange(student.student)"></td>
             </tr>
         </tbody>
     </table>
-    <p *ngIf="!studentList || studentList.length <= 0 ">No Student Enrolled</p>
+    <p *ngIf=" !studentList || studentList.length <=0 ">No Student Enrolled</p>
 
 </div>
-<div mat-dialog-actions class="text-center">
-    <button mat-button mat-dialog-close>Ok</button>
+<div mat-dialog-actions class=" text-center">
+    <button mat-button mat-dialog-close>OK</button>
+    <button mat-button color="warn" (click)="unenrolleCourse()">Unenrolled</button>
 </div>

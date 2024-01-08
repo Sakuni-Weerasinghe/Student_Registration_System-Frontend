@@ -9,7 +9,7 @@ import { StudentCourses } from '../../Models/StudentCourse';
 import { NgToastService } from 'ng-angular-popup';
 import { NgToastModule } from 'ng-angular-popup';
 import { HttpClient } from '@angular/common/http';
-import { StudentCourseDialogComponent } from '../dialog/student-course-dialog/student-course-dialog.component';
+
 
 @Component({
   selector: 'app-student-course-details',

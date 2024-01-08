@@ -20,6 +20,7 @@ export interface StudentCourses_ {
         addressLine1: string;
         addressLine2: string;
         addressLine3: string;
+        selected: boolean;
     };
     courses: {
         courseId: number;

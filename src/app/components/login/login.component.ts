@@ -46,13 +46,19 @@ export class LoginComponent implements OnInit {
         next: (res) => {
           this.loginForm.reset();
           this.localStorageService.setItem("token", res.token)
+          this.localStorageService.setItem('userType', res.userType);
           this.toast.success({
             detail: 'SUCCESS',
             summary: res.message,
             duration: 2000,
           });
           this.authService.login();
-          this.router.navigate(['dashboard']);
+          // Navigate based on user type
+          if (res.userType === 0) {
+            this.router.navigate(['admin-dashboard']);
+          } else if (res.userType === 1) {
+            this.router.navigate(['student-dashboard']);
+          }
         },
         error: (err) => {
           this.toast.error({

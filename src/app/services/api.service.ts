@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Student } from '../Models/Student';
+import { Student, Student_ } from '../Models/Student';
 import { Observable } from 'rxjs';
 import { Course } from '../Models/Course';
 import { CourseSchedule, CourseSchedule_ } from '../Models/CourseSchedule';
 import { StudentCourses, StudentCourses_ } from '../Models/StudentCourse';
 import { CommonResponse } from '../Models/CommonResponse';
+import { RegisterResponse } from '../Models/RegisterResponse';
 
 @Injectable({
   providedIn: 'root',
@@ -16,22 +17,22 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   login(loginObj: any) {
-    return this.http.post<any>(this.baseUrl + "Admin/authenticate", loginObj);
+    return this.http.post<any>(this.baseUrl + "User/authenticate", loginObj);
   }
 
-  registerStudent(registerStudentRequest: Student): Observable<CommonResponse> {
-    return this.http.post<CommonResponse>(
-      this.baseUrl + 'Student/register-student',
+  registerStudent(registerStudentRequest: Student): Observable<RegisterResponse> {
+    return this.http.post<RegisterResponse>(
+      this.baseUrl + 'User/register/student',
       registerStudentRequest
     );
   }
 
-  getAllStudents(): Observable<Student[]> {
-    return this.http.get<Student[]>(this.baseUrl + 'Student');
+  getAllStudents(): Observable<Student_[]> {
+    return this.http.get<Student_[]>(this.baseUrl + 'Student');
   }
 
-  getStudent(id: number): Observable<Student> {
-    return this.http.get<Student>(this.baseUrl + 'Student/' + id);
+  getStudent(id: number): Observable<Student_> {
+    return this.http.get<Student_>(this.baseUrl + 'Student/' + id);
   }
 
   updateStudent(id: number, updateStudentRequest: Student): Observable<CommonResponse> {

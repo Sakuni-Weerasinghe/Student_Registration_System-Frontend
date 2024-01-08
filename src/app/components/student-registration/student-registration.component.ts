@@ -53,12 +53,13 @@ export class StudentRegistrationComponent {
     if (this.studentRegistrationForm.valid) {
       this.apiService.registerStudent(this.studentRegistrationForm.value).subscribe({
         next: (response) => {
+          const successMessage = `SUCCESS: ${response.message}\n\nUserName: ${response.userName}\nPassword: ${response.password}`;
           this.studentRegistrationForm.reset();
           this.toast.success({
             detail: 'SUCCESS',
-            summary: response.message,
-            duration: 2000,
-          });
+            summary: successMessage,
+            sticky: true
+          })
         },
         error: (err) => {
           this.toast.error({

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { NgToastService, NgToastModule } from 'ng-angular-popup';
-import { Student } from '../../Models/Student';
+import { Student_ } from '../../Models/Student';
 import { HttpClient } from '@angular/common/http';
 import { Course } from '../../Models/Course';
 import { MatIconModule } from '@angular/material/icon';
@@ -21,7 +21,7 @@ import { StudentCourses_ } from '../../Models/StudentCourse';
 export class StudentDetailsComponent {
   studentCourses: StudentCourses_[] = [];
 
-  studentDetails: Student = {
+  studentDetails: Student_ = {
     studentId: 0,
     studentRegistrationNumber: ' ',
     firstName: ' ',
@@ -33,6 +33,8 @@ export class StudentDetailsComponent {
     addressLine1: ' ',
     addressLine2: ' ',
     addressLine3: ' ',
+    username: ' ',
+    password: ' '
   };
 
   courseDetails: Course = {
@@ -105,6 +107,10 @@ export class StudentDetailsComponent {
         console.log(error.message);
       },
     });
+  }
+
+  resetPassword(studentId:number, password: string){
+    
   }
 
 }
